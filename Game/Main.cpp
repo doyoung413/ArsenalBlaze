@@ -1,23 +1,25 @@
+/*-------------------------------------------------------*/
+//Author: Doyoung Lee (doyoung413@gmail.com)
+//File: Main.cpp
+//Description: Source file for main function
+/*-------------------------------------------------------*/
 #include <SDL.h>
+#include "Window.hpp"
 
 #undef main
 int main()
 {
-	SDL_Window* window = NULL;
-	SDL_Surface* screenSurface = NULL;
+	Window window;
+	window.Init("Arsenal Blaze", 640, 480, false);
 
-	SDL_Init(SDL_INIT_VIDEO);
-	window = SDL_CreateWindow("SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
-	screenSurface = SDL_GetWindowSurface(window);
-
-	SDL_Event* e = nullptr;
+	SDL_Event e;
 	while (1)
 	{
-		SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 255, 255, 255));
-		SDL_UpdateWindowSurface(window);
-		SDL_PollEvent(e);
+		SDL_PollEvent(&e);
+		window.Update(e);
 	}
-	SDL_DestroyWindow(window);
+
+	window.End();
 	SDL_Quit();
 	return 0;
 }

@@ -12,5 +12,13 @@
     <ClCompile Include="Game\Main.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine\src\Window.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEngine\src\Window.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
