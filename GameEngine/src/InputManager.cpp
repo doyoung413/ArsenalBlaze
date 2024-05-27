@@ -1,7 +1,7 @@
 /*-------------------------------------------------------*/
 //Author: Doyoung Lee (doyoung413@gmail.com)
-//File: InputManager.cpp
-//Description: Source file for SDL input
+//File: InputManagers.cpp
+//Description: Source file for input device management
 /*-------------------------------------------------------*/
 #include "InputManager.hpp"
 #include "Instance.hpp"

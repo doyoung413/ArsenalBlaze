@@ -1,0 +1,12 @@
+/*-------------------------------------------------------*/
+//Author: Doyoung Lee (doyoung413@gmail.com)
+//File: ObjectType.hpp
+//Description: Header file for Object types
+/*-------------------------------------------------------*/
+#pragma once
+
+enum class ObjectType
+{
+	NONE,
+	LAST
+};

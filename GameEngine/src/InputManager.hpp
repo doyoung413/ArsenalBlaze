@@ -1,3 +1,8 @@
+/*-------------------------------------------------------*/
+//Author: Doyoung Lee (doyoung413@gmail.com)
+//File: InputManagers.hpp
+//Description: Header file for input device management
+/*-------------------------------------------------------*/
 #pragma once
 #include <SDL.h>
 #include <unordered_map>

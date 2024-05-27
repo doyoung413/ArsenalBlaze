@@ -7,6 +7,12 @@
     <Filter Include="Engine">
       <UniqueIdentifier>{09c1e042-4a08-4f88-80c5-e4c69e6bbf05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Component">
+      <UniqueIdentifier>{37952a17-17a2-477d-bf0a-f5d77801ba87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{ba6e5102-2838-4e8f-8b81-7520219214c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp">
@@ -24,6 +30,13 @@
     <ClCompile Include="GameEngine\src\InputManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine\src\ObjectManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\Object.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\testComp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Window.hpp">
@@ -40,6 +53,24 @@
     </ClInclude>
     <ClInclude Include="GameEngine\src\InputManager.hpp">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\ObjectType.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Component.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\ObjectManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Object.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\ComponentTypes.hpp">
+      <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\testComp.hpp">
+      <Filter>Game\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
