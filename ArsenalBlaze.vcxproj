@@ -19,10 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameEngine\src\CameraManager.cpp" />
+    <ClCompile Include="GameEngine\src\InputManager.cpp" />
+    <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
     <ClCompile Include="Game\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameEngine\src\CameraManager.hpp" />
+    <ClInclude Include="GameEngine\src\InputManager.hpp" />
+    <ClInclude Include="GameEngine\src\Instance.hpp" />
+    <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

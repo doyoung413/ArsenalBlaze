@@ -15,9 +15,30 @@
     <ClCompile Include="GameEngine\src\Window.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine\src\SpriteManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\CameraManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\InputManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Window.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\SpriteManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Instance.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\CameraManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\InputManager.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
