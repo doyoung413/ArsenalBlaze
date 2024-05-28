@@ -1,4 +1,4 @@
-#include "testComp.hpp"
+#include "TestComp.hpp"
 #include "Instance.hpp"
 
 void TestComp::Update(float dt)

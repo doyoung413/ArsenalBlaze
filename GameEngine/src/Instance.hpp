@@ -8,6 +8,7 @@
 #include "CameraManager.hpp"
 #include "InputManager.hpp"
 #include "ObjectManager.hpp"
+#include "LevelManager.hpp"
 #include "Window.hpp"
 
 class Instance
@@ -23,18 +24,21 @@ public:
     static CameraManager* GetCameraManager() { return GetInstance().cameraManager; }
     static InputManager* GetInputManager() { return GetInstance().inputManager; }
     static ObjectManager* GetObjectManager() { return GetInstance().objectManager; }
+    static LevellManager* GetLevelManager() { return GetInstance().levelManager; }
     static Window* GetWindow() { return GetInstance().window; }
 
     void SetSpriteManager(SpriteManager* manager) { spriteManager = manager; }
     void SetCameraManager(CameraManager* manager) { cameraManager = manager; }
     void SetInputManager(InputManager* manager) { inputManager = manager; }
     void SetObjectManager(ObjectManager* manager) { objectManager = manager; }
+    void SetLevelManager(LevellManager* manager) { levelManager = manager; }
     void SetWindow(Window* window_) { window = window_; }
 private:
     SpriteManager* spriteManager = nullptr;
     CameraManager* cameraManager = nullptr;
     InputManager* inputManager = nullptr;
     ObjectManager* objectManager = nullptr;
+    LevellManager* levelManager = nullptr;
     Window* window = nullptr;
 
     Instance() {}

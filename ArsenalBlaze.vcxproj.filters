@@ -13,6 +13,9 @@
     <Filter Include="Game\Object">
       <UniqueIdentifier>{ba6e5102-2838-4e8f-8b81-7520219214c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Level">
+      <UniqueIdentifier>{7a18145f-2563-45b4-8c52-0d250b07fa33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp">
@@ -36,7 +39,15 @@
     <ClCompile Include="GameEngine\src\Object.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Component\testComp.cpp" />
+    <ClCompile Include="GameEngine\src\LevelManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\TestLevel.cpp">
+      <Filter>Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\TestComp.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Window.hpp">
@@ -69,7 +80,19 @@
     <ClInclude Include="GameEngine\src\ComponentTypes.hpp">
       <Filter>Game\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Component\testComp.hpp">
+    <ClInclude Include="GameEngine\src\LevelManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Level.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\LevelType.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\TestLevel.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\TestComp.hpp">
       <Filter>Game\Component</Filter>
     </ClInclude>
   </ItemGroup>

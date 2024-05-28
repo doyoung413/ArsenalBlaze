@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClCompile Include="GameEngine\src\CameraManager.cpp" />
     <ClCompile Include="GameEngine\src\InputManager.cpp" />
+    <ClCompile Include="GameEngine\src\LevelManager.cpp" />
     <ClCompile Include="GameEngine\src\Object.cpp" />
     <ClCompile Include="GameEngine\src\ObjectManager.cpp" />
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
-    <ClCompile Include="Game\Component\testComp.cpp" />
+    <ClCompile Include="Game\Component\TestComp.cpp" />
+    <ClCompile Include="Game\Level\TestLevel.cpp" />
     <ClCompile Include="Game\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -34,12 +36,16 @@
     <ClInclude Include="GameEngine\src\ComponentTypes.hpp" />
     <ClInclude Include="GameEngine\src\InputManager.hpp" />
     <ClInclude Include="GameEngine\src\Instance.hpp" />
+    <ClInclude Include="GameEngine\src\Level.hpp" />
+    <ClInclude Include="GameEngine\src\LevelManager.hpp" />
+    <ClInclude Include="GameEngine\src\LevelType.hpp" />
     <ClInclude Include="GameEngine\src\Object.hpp" />
     <ClInclude Include="GameEngine\src\ObjectManager.hpp" />
     <ClInclude Include="GameEngine\src\ObjectType.hpp" />
     <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
-    <ClInclude Include="Game\Component\testComp.hpp" />
+    <ClInclude Include="Game\Component\TestComp.hpp" />
+    <ClInclude Include="Game\Level\TestLevel.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
