@@ -4,52 +4,22 @@
 //Description: Source file for main function
 /*-------------------------------------------------------*/
 #include <SDL.h>
-#include "Instance.hpp"
+#include "Application.hpp"
 
 #include "Level/TestLevel.hpp"
 
 #undef main
 int main()
 {
-	Window window;
-	SpriteManager spriteManager;
-	CameraManager cameraManager;
-	InputManager inputManager;
-	ObjectManager objectManager;
-	LevellManager levelManager;
+	Application application;
 
-	window.Init("Arsenal Blaze", 640, 480, false);
-	spriteManager.InitRenderer("Assets/shader.vert", "Assets/shader.frag");
-	spriteManager.SetBackGroundColor({ 1.f, 1.f, 1.f, 1.f });
-	cameraManager.Init({ 640,480 });
+	application.Init("Arsenal Blaze", 640, 480, false);
+	Instance::GetSpriteManager()->SetBackGroundColor({ 0.f,0.f,0.f,1.f });
+	Instance::GetLevelManager()->AddLevel(new TestLevel());
 
-	Instance::GetInstance().SetCameraManager(&cameraManager);
-	Instance::GetInstance().SetSpriteManager(&spriteManager);
-	Instance::GetInstance().SetInputManager(&inputManager);
-	Instance::GetInstance().SetObjectManager(&objectManager);
-	Instance::GetInstance().SetLevelManager(&levelManager);
-	Instance::GetInstance().SetWindow(&window);
+	application.Update();
 
-	levelManager.AddLevel(new TestLevel());
-	SDL_Event e;
-	while (1)
-	{
-		SDL_PollEvent(&e);
-		levelManager.Update(1.f);
-		window.Update(e);
-		inputManager.InputPollEvent(e);
-	}
-	objectManager.DestroyAllObjects();
-	levelManager.End();
+	application.End();
 
-	Instance::GetInstance().SetCameraManager(nullptr);
-	Instance::GetInstance().SetSpriteManager(nullptr);
-	Instance::GetInstance().SetInputManager(nullptr);
-	Instance::GetInstance().SetObjectManager(nullptr);
-	Instance::GetInstance().SetLevelManager(nullptr);
-	Instance::GetInstance().SetWindow(nullptr);
-
-	window.End();
-	SDL_Quit();
 	return 0;
 }

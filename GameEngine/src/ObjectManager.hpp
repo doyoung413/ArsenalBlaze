@@ -21,12 +21,6 @@ public:
 	void Update(float dt);
     void End();
 
-    ObjectManager* GetObjectManager()
-    {
-	    static ObjectManager* Scene_manager = new ObjectManager();
-	    return Scene_manager;
-    }
-
     template <typename T, typename... Args>
     void AddObject(Args... args)
     {

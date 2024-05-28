@@ -19,4 +19,12 @@ void TestComp::Update(float dt)
 	{
 		GetOwner()->SetYPosition(GetOwner()->GetPosition().y - 1.f * dt);
 	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::Z))
+	{
+		GetOwner()->SetRotate(GetOwner()->GetRotate() - 0.1f * dt);
+	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::X))
+	{
+		GetOwner()->SetRotate(GetOwner()->GetRotate() + 0.1f * dt);
+	}
 }

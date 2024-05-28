@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameEngine\src\Application.cpp" />
     <ClCompile Include="GameEngine\src\CameraManager.cpp" />
     <ClCompile Include="GameEngine\src\InputManager.cpp" />
     <ClCompile Include="GameEngine\src\LevelManager.cpp" />
@@ -26,11 +27,13 @@
     <ClCompile Include="GameEngine\src\ObjectManager.cpp" />
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
+    <ClCompile Include="Game\Component\Physics.cpp" />
     <ClCompile Include="Game\Component\TestComp.cpp" />
     <ClCompile Include="Game\Level\TestLevel.cpp" />
     <ClCompile Include="Game\Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameEngine\src\Application.hpp" />
     <ClInclude Include="GameEngine\src\CameraManager.hpp" />
     <ClInclude Include="GameEngine\src\Component.hpp" />
     <ClInclude Include="GameEngine\src\ComponentTypes.hpp" />
@@ -44,6 +47,7 @@
     <ClInclude Include="GameEngine\src\ObjectType.hpp" />
     <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
+    <ClInclude Include="Game\Component\Physics.hpp" />
     <ClInclude Include="Game\Component\TestComp.hpp" />
     <ClInclude Include="Game\Level\TestLevel.hpp" />
   </ItemGroup>
