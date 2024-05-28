@@ -54,6 +54,12 @@
     <ClCompile Include="Game\Component\Physics.cpp">
       <Filter>Game\Component</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngine\src\Particle.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\ParticleManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Window.hpp">
@@ -106,6 +112,15 @@
     </ClInclude>
     <ClInclude Include="Game\Component\Physics.hpp">
       <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Timer.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\Particle.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\ParticleManager.hpp">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

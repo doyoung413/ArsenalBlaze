@@ -3,7 +3,6 @@
 //File: Main.cpp
 //Description: Source file for main function
 /*-------------------------------------------------------*/
-#include <SDL.h>
 #include "Application.hpp"
 
 #include "Level/TestLevel.hpp"
@@ -13,7 +12,7 @@ int main()
 {
 	Application application;
 
-	application.Init("Arsenal Blaze", 640, 480, false);
+	application.Init("Arsenal Blaze", 640, 480, false, FrameRate::FPS_60);
 	Instance::GetSpriteManager()->SetBackGroundColor({ 0.f,0.f,0.f,1.f });
 	Instance::GetLevelManager()->AddLevel(new TestLevel());
 

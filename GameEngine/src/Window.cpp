@@ -26,13 +26,8 @@ void Window::Init(const char* title, int width, int height, bool fullscreen)
 	}
 	else
 	{
-		window = SDL_CreateWindow(
-			title,
-			SDL_WINDOWPOS_CENTERED,
-			SDL_WINDOWPOS_CENTERED,
-			(int)wSize.x,
-			(int)wSize.y,
-			flags | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+		window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+			(int)wSize.x, (int)wSize.y, flags | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
 	}
 	context = SDL_GL_CreateContext(GetWindow());
 
@@ -48,7 +43,10 @@ void Window::Init(const char* title, int width, int height, bool fullscreen)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glewInit();
 
+	SDL_GL_SetSwapInterval(true);
 	std::cout << "Create Window Successful" << '\n' << std::endl;
+
+	AspectRatio(width, height, screenRatio);
 }
 
 void Window::Update(SDL_Event event)
@@ -101,9 +99,7 @@ void Window::ResizeEventHandler(SDL_Window* /*window*/, int width, int height)
 
 void Window::AspectRatio(int width, int height, glm::vec2 ratio)
 {
-	glm::vec2 viewPort{ 0, 0 };
-	glm::vec2 viewPortSize{ width, height };
-
+	viewPortSize = { width, height };
 	if (width * ratio.y > height * ratio.x)
 	{
 		viewPortSize.x = height * ratio.x / ratio.y;

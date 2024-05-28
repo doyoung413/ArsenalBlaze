@@ -115,13 +115,17 @@ glm::vec2 InputManager::GetMousePosition()
 	int mouseX, mouseY;
 	SDL_GetMouseState(&mouseX, &mouseY);
 	glm::vec2 pos = { mouseX, mouseY };
+	glm::vec2 cameraPos = { Instance::GetCameraManager()->GetCameraPosition().x, Instance::GetCameraManager()->GetCameraPosition().y };
 	glm::vec2 windowViewSize = Instance::GetCameraManager()->GetViewSize();
+	glm::vec2 viewPort = Instance::GetWindow()->GetViewPort();
+	glm::vec2 viewPortSize = Instance::GetWindow()->GetViewPortSize();
 	int w = 0;
 	int h = 0;
 	SDL_GetWindowSize(Instance::GetWindow()->GetWindow(), &w, &h);
 	float zoom = Instance::GetCameraManager()->GetZoom();
-
-	pos = { windowViewSize.x / 2.f * (pos.x / (static_cast<float>(w) / 2.f) - 1) / zoom, -(windowViewSize.y / 2.f * (pos.y / (static_cast<float>(h) / 2.f) - 1) / zoom) };
+	
+	pos = { (windowViewSize.x / 2.f * ((pos.x - viewPort.x) / (static_cast<float>(viewPortSize.x) / 2.f) - 1) + cameraPos.x) / zoom,
+		-((windowViewSize.y / 2.f * ((pos.y - viewPort.y) / (static_cast<float>(viewPortSize.y) / 2.f) - 1) + cameraPos.y) / zoom) };
 	return ceil(pos);
 }
 

@@ -22,13 +22,13 @@ void TestLevel::Init()
 void TestLevel::Update(float dt)
 {
 	Instance::GetObjectManager()->GetLastObject()->SetRotate(Instance::GetObjectManager()->GetLastObject()->GetRotate() + 0.05f * dt);
-	if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
-	{
-		std::cout << Instance::GetInputManager()->KeyBoardToString(Instance::GetInputManager()->GetPressKey()) << std::endl;
-	}
 	if (Instance::GetObjectManager()->FindObjectWithId(0)->GetComponent<Physics>()->CheckCollision(*Instance::GetObjectManager()->FindObjectWithId(1)) == true)
 	{
 		std::cout << "Collide!" << std::endl;
+	}
+	//if (Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::LEFT))
+	{
+		Instance::GetParticleManager()->AddRandomParticle(Instance::GetInputManager()->GetMousePosition(), { 1.f,1.f }, { 0.25f,0.25f }, 0.f, 20.f, 3);
 	}
 }
 

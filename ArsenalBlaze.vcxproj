@@ -25,6 +25,8 @@
     <ClCompile Include="GameEngine\src\LevelManager.cpp" />
     <ClCompile Include="GameEngine\src\Object.cpp" />
     <ClCompile Include="GameEngine\src\ObjectManager.cpp" />
+    <ClCompile Include="GameEngine\src\Particle.cpp" />
+    <ClCompile Include="GameEngine\src\ParticleManager.cpp" />
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
     <ClCompile Include="Game\Component\Physics.cpp" />
@@ -45,7 +47,10 @@
     <ClInclude Include="GameEngine\src\Object.hpp" />
     <ClInclude Include="GameEngine\src\ObjectManager.hpp" />
     <ClInclude Include="GameEngine\src\ObjectType.hpp" />
+    <ClInclude Include="GameEngine\src\Particle.hpp" />
+    <ClInclude Include="GameEngine\src\ParticleManager.hpp" />
     <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
+    <ClInclude Include="GameEngine\src\Timer.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
     <ClInclude Include="Game\Component\Physics.hpp" />
     <ClInclude Include="Game\Component\TestComp.hpp" />

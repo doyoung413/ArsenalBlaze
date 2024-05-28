@@ -48,6 +48,7 @@ void LevellManager::Update(float dt)
 		Instance::GetObjectManager()->Update(dt);
 		Instance::GetObjectManager()->CollideObjects();
 		levelList.at(static_cast<int>(currentLevel))->Update(dt);
+		Instance::GetParticleManager()->Draw(dt);
 		Instance::GetSpriteManager()->DrawEnd();
 		break;
 	case State::PAUSE:
@@ -56,6 +57,7 @@ void LevellManager::Update(float dt)
 		Instance::GetSpriteManager()->DrawStart();
 		Instance::GetObjectManager()->Update(0.f);
 		levelList.at(static_cast<int>(currentLevel))->Update(0.f);
+		Instance::GetParticleManager()->Draw(0.f);
 		Instance::GetSpriteManager()->DrawEnd();
 		break;
 	case State::CHANGE:

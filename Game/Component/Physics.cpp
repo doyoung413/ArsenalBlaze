@@ -105,13 +105,11 @@ bool Physics::CheckCollision(Object& obj)
     std::vector<glm::vec2> rotatedPoints1;
     std::vector<glm::vec2> rotatedPoints2;
 
-    // 첫 번째 다각형 회전
     for (const glm::vec2& point : point1)
     {
         rotatedPoints1.push_back(RotatePoint(aabb, point, DegreeToRadian(Component::GetOwner()->GetRotate())));
     }
 
-    // 두 번째 다각형 회전
     for (const glm::vec2& point : point2)
     {
         rotatedPoints2.push_back(RotatePoint(obj.GetComponent<Physics>()->GetAABB(), point, DegreeToRadian(obj.GetRotate())));
@@ -120,24 +118,24 @@ bool Physics::CheckCollision(Object& obj)
     for (size_t i = 0; i < rotatedPoints1.size(); ++i)
     {
         glm::vec2 edge = rotatedPoints1[(i + 1) % rotatedPoints1.size()] - rotatedPoints1[i];
-        glm::vec2 axis = glm::vec2(-edge.y, edge.x); // 수직인 축
+        glm::vec2 axis = glm::vec2(-edge.y, edge.x);
         if (IsSeparatingAxis(axis, rotatedPoints1, rotatedPoints2))
         {
-            return false; // 충돌이 없음
+            return false; 
         }
     }
 
     for (size_t i = 0; i < rotatedPoints2.size(); ++i)
     {
         glm::vec2 edge = rotatedPoints2[(i + 1) % rotatedPoints2.size()] - rotatedPoints2[i];
-        glm::vec2 axis = glm::vec2(-edge.y, edge.x); // 수직인 축
+        glm::vec2 axis = glm::vec2(-edge.y, edge.x);
         if (IsSeparatingAxis(axis, rotatedPoints1, rotatedPoints2))
         {
-            return false; // 충돌이 없음
+            return false;
         }
     }
 
-    return true; // 모든 축에서 겹침이 없음
+    return true; 
 }
 
 glm::vec2 Physics::PointPlusVector(glm::vec2 point, glm::vec2 vector)

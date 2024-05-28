@@ -9,6 +9,7 @@
 #include "InputManager.hpp"
 #include "ObjectManager.hpp"
 #include "LevelManager.hpp"
+#include "ParticleManager.hpp"
 #include "Window.hpp"
 
 class Instance
@@ -25,6 +26,7 @@ public:
     static InputManager* GetInputManager() { return GetInstance().inputManager; }
     static ObjectManager* GetObjectManager() { return GetInstance().objectManager; }
     static LevellManager* GetLevelManager() { return GetInstance().levelManager; }
+    static ParticleManager* GetParticleManager() { return GetInstance().particleManager; }
     static Window* GetWindow() { return GetInstance().window; }
 
     void SetSpriteManager(SpriteManager* manager) { spriteManager = manager; }
@@ -32,6 +34,7 @@ public:
     void SetInputManager(InputManager* manager) { inputManager = manager; }
     void SetObjectManager(ObjectManager* manager) { objectManager = manager; }
     void SetLevelManager(LevellManager* manager) { levelManager = manager; }
+    void SetParticleManager(ParticleManager* manager) { particleManager = manager; }
     void SetWindow(Window* window_) { window = window_; }
 private:
     SpriteManager* spriteManager = nullptr;
@@ -39,6 +42,7 @@ private:
     InputManager* inputManager = nullptr;
     ObjectManager* objectManager = nullptr;
     LevellManager* levelManager = nullptr;
+    ParticleManager* particleManager = nullptr;
     Window* window = nullptr;
 
     Instance() {}

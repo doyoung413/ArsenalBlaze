@@ -30,6 +30,9 @@ public:
 
 	void SetScreenRatio(glm::vec2 amount) { screenRatio = amount; }
 	glm::vec2 GetScreenRatio() { return screenRatio; }
+
+	glm::vec2 GetViewPort() { return viewPort; }
+	glm::vec2 GetViewPortSize() { return viewPortSize; }
 private:
 	void ResizeEventHandler(SDL_Window* window, int width, int height);
 	void AspectRatio(int width, int height, glm::vec2 ratio);
@@ -39,4 +42,7 @@ private:
 
 	glm::vec2 screenRatio{ 4, 3 };
 	glm::vec2 wSize = { 0,0 };
+
+	glm::vec2 viewPort{ 0, 0 };
+	glm::vec2 viewPortSize{ 0,0 };
 };

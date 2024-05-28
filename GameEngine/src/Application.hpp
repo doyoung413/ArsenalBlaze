@@ -4,6 +4,7 @@
 //Description: Header file for handling of the application
 /*-------------------------------------------------------*/
 #include "Instance.hpp"
+#include "Timer.hpp"
 
 class Application
 {
@@ -11,7 +12,7 @@ public:
     Application() = default;
     ~Application();
 
-    void Init(const char* title, int windowWidth, int windowHeight, bool fullScreen = false);
+    void Init(const char* title, int windowWidth, int windowHeight, bool fullScreen = false, FrameRate frameRate = FrameRate::FPS_60);
     void Update();
     void End();
     void Input();
@@ -22,5 +23,8 @@ private:
     ObjectManager objectManager;
     LevellManager levelManager;
     InputManager inputManager;
+    ParticleManager particleManager;
     Window window;
+
+    Timer timer;
 };

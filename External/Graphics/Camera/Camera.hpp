@@ -50,6 +50,7 @@ public:
 	void            SetNear(float amount) noexcept { nearClip = amount; }
 	void            SetFar(float amount) noexcept { farClip = amount; }
 	void            SetZoom(glm::vec2 size) noexcept { cameraViewSize = size; }
+	glm::vec3 GetPosition() { return cameraPosition; }
 private:
 	glm::vec3 cameraPosition{ 0.0f, 0.0f, 1.0f };
 	glm::vec3 cameraTarget{ 0.0f, 0.0f, 0.0f };
