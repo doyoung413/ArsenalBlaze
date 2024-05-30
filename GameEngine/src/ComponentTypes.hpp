@@ -8,7 +8,7 @@
 enum class ComponentTypes
 {
     INVALID = 0,
-	TEST,
 	PHYSICS,
+	PLAYERCOMP,
 	LAST
 };

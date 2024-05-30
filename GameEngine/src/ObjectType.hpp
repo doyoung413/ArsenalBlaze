@@ -8,5 +8,13 @@
 enum class ObjectType
 {
 	NONE,
+	PLAYER,
+	BULLET,
+	LASER,
+	BARRIER,
+	ITEM,
+	ENEMY,
+	ENEMYBULLET,
+	BOSS,
 	LAST
 };

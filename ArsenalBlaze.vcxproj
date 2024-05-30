@@ -30,9 +30,13 @@
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
     <ClCompile Include="Game\Component\Physics.cpp" />
-    <ClCompile Include="Game\Component\TestComp.cpp" />
+    <ClCompile Include="Game\Component\PlayerComponent.cpp" />
     <ClCompile Include="Game\Level\TestLevel.cpp" />
     <ClCompile Include="Game\Main.cpp" />
+    <ClCompile Include="Game\Object\Bullet.cpp" />
+    <ClCompile Include="Game\Object\Enemy.cpp" />
+    <ClCompile Include="Game\Object\EnemyBullet.cpp" />
+    <ClCompile Include="Game\Object\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Application.hpp" />
@@ -53,8 +57,12 @@
     <ClInclude Include="GameEngine\src\Timer.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
     <ClInclude Include="Game\Component\Physics.hpp" />
-    <ClInclude Include="Game\Component\TestComp.hpp" />
+    <ClInclude Include="Game\Component\PlayerComponent.hpp" />
     <ClInclude Include="Game\Level\TestLevel.hpp" />
+    <ClInclude Include="Game\Object\Bullet.hpp" />
+    <ClInclude Include="Game\Object\Enemy.hpp" />
+    <ClInclude Include="Game\Object\EnemyBullet.hpp" />
+    <ClInclude Include="Game\Object\Player.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

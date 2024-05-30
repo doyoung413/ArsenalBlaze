@@ -45,9 +45,6 @@
     <ClCompile Include="Game\Level\TestLevel.cpp">
       <Filter>Game\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Component\TestComp.cpp">
-      <Filter>Game\Component</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine\src\Application.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -59,6 +56,21 @@
     </ClCompile>
     <ClCompile Include="GameEngine\src\ParticleManager.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Enemy.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyBullet.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Player.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Bullet.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\PlayerComponent.cpp">
+      <Filter>Game\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,9 +116,6 @@
     <ClInclude Include="Game\Level\TestLevel.hpp">
       <Filter>Game\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Component\TestComp.hpp">
-      <Filter>Game\Component</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine\src\Application.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -121,6 +130,21 @@
     </ClInclude>
     <ClInclude Include="GameEngine\src\ParticleManager.hpp">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Bullet.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Enemy.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyBullet.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Player.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\PlayerComponent.hpp">
+      <Filter>Game\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
