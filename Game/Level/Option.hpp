@@ -24,6 +24,9 @@ private:
 	int currentSoundChannel = 0;
 
 	int index = 0;
+	int bgmIndex = 0;
+	int seIndex = 0;
+
 	float changeDelay = 0.f;
 	bool isKeySetting = false;
 	bool isSelected = false;
@@ -31,4 +34,5 @@ private:
 	SpriteManager* spriteManager = nullptr;
 	GameManager* gameManager = nullptr;
 	InputManager* inputManager = nullptr;
+	SoundManager* soundManager = nullptr;
 };
