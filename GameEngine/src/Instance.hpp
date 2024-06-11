@@ -10,6 +10,9 @@
 #include "ObjectManager.hpp"
 #include "LevelManager.hpp"
 #include "ParticleManager.hpp"
+#include "GameManager.hpp"
+#include "SoundManager.hpp"
+#include "BackgroundManager.hpp"
 #include "Window.hpp"
 
 class Instance
@@ -27,7 +30,10 @@ public:
     static ObjectManager* GetObjectManager() { return GetInstance().objectManager; }
     static LevellManager* GetLevelManager() { return GetInstance().levelManager; }
     static ParticleManager* GetParticleManager() { return GetInstance().particleManager; }
+    static SoundManager* GetSoundManager() { return GetInstance().soundManager; }
+    static BackgroundManager* GetBackgroundManager() { return GetInstance().backgroundManager; }
     static Window* GetWindow() { return GetInstance().window; }
+    static GameManager* GetGameManager() { return GetInstance().gameManager; }
 
     void SetSpriteManager(SpriteManager* manager) { spriteManager = manager; }
     void SetCameraManager(CameraManager* manager) { cameraManager = manager; }
@@ -35,7 +41,10 @@ public:
     void SetObjectManager(ObjectManager* manager) { objectManager = manager; }
     void SetLevelManager(LevellManager* manager) { levelManager = manager; }
     void SetParticleManager(ParticleManager* manager) { particleManager = manager; }
+    void SetSoundManagerManager(SoundManager * manager) { soundManager = manager; }
+    void SetBackgroundManager(BackgroundManager* manager) { backgroundManager = manager; }
     void SetWindow(Window* window_) { window = window_; }
+    void SetGameManager(GameManager* manager) { gameManager = manager; }
 private:
     SpriteManager* spriteManager = nullptr;
     CameraManager* cameraManager = nullptr;
@@ -43,7 +52,11 @@ private:
     ObjectManager* objectManager = nullptr;
     LevellManager* levelManager = nullptr;
     ParticleManager* particleManager = nullptr;
+    BackgroundManager* backgroundManager = nullptr;
+    SoundManager* soundManager = nullptr;
     Window* window = nullptr;
+
+    GameManager* gameManager = nullptr;
 
     Instance() {}
 };

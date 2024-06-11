@@ -16,6 +16,15 @@
     <Filter Include="Game\Level">
       <UniqueIdentifier>{7a18145f-2563-45b4-8c52-0d250b07fa33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object\PlayerWeapon">
+      <UniqueIdentifier>{97b84d08-b473-4490-a4f2-4e9ba9438c86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\GameManager">
+      <UniqueIdentifier>{8621acd0-f077-4107-9f2d-381952f89da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\FileIO">
+      <UniqueIdentifier>{42951111-e37b-4d7e-8e59-1d650e59ce60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp">
@@ -66,11 +75,41 @@
     <ClCompile Include="Game\Object\Player.cpp">
       <Filter>Game\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Object\Bullet.cpp">
-      <Filter>Game\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Component\PlayerComponent.cpp">
       <Filter>Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Homing.cpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Laser.cpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Bullet.cpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameManager.cpp">
+      <Filter>Game\GameManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Item.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\Option.cpp">
+      <Filter>Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\Shop.cpp">
+      <Filter>Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\Stage1.cpp">
+      <Filter>Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\BackgroundManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine\src\SoundManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\FileManager.cpp">
+      <Filter>Game\FileIO</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +170,6 @@
     <ClInclude Include="GameEngine\src\ParticleManager.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\Bullet.hpp">
-      <Filter>Game\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Object\Enemy.hpp">
       <Filter>Game\Object</Filter>
     </ClInclude>
@@ -145,6 +181,42 @@
     </ClInclude>
     <ClInclude Include="Game\Component\PlayerComponent.hpp">
       <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Homing.hpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Laser.hpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Bullet.hpp">
+      <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameManager.hpp">
+      <Filter>Game\GameManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Item.hpp">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\InputKeys.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\Option.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\Shop.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\Stage1.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\SoundManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine\src\BackgroundManager.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FileManager.hpp">
+      <Filter>Game\FileIO</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

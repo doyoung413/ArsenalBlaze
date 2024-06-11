@@ -5,7 +5,13 @@
 /*-------------------------------------------------------*/
 #include "PlayerComponent.hpp"
 #include "Object/Bullet.hpp"
+#include "Object/Homing.hpp"
+#include "Object/Laser.hpp"
 #include "Instance.hpp"
+
+PlayerComponent::PlayerComponent() : Component(ComponentTypes::PLAYERCOMP) 
+{
+}
 
 void PlayerComponent::Init()
 {
@@ -38,23 +44,23 @@ void PlayerComponent::Input(float dt)
 	{
 		if (isHit == false)
 		{
-			if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::RIGHT))
+			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().RIGHT))
 			{
 				GetOwner()->SetXPosition(GetOwner()->GetPosition().x + playerMoveSpeed * dt);
 			}
-			else if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::LEFT))
+			else if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().LEFT))
 			{
 				GetOwner()->SetXPosition(GetOwner()->GetPosition().x - playerMoveSpeed * dt);
 			}
-			if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::UP))
+			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().UP))
 			{
 				GetOwner()->SetYPosition(GetOwner()->GetPosition().y + playerMoveSpeed * dt);
 			}
-			if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::DOWN))
+			else if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().DOWN))
 			{
 				GetOwner()->SetYPosition(GetOwner()->GetPosition().y - playerMoveSpeed * dt);
 			}
-			if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::SPACE))
+			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().KEY1))
 			{
 				Attack();
 			}
@@ -66,7 +72,10 @@ void PlayerComponent::Attack()
 {
 	if (isShotReady == true)
 	{
-		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 8.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		//Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 8.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(90.f);
+		//Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::LASER);
 		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
 		isShotReady = false;
 	}
@@ -77,7 +86,7 @@ void PlayerComponent::Delay(float dt)
 	if (isShotReady == false)
 	{
 		shotDelay +=  dt;
-		if (shotDelay >= 6.f)
+		if (shotDelay >= 80.f)
 		{
 			shotDelay = 0.f;
 			isShotReady = true;

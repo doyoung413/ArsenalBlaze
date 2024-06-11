@@ -9,6 +9,7 @@
 
 #include "Object/Enemy.hpp"
 #include "Object/EnemyBullet.hpp"
+#include "Object/Item.hpp"
 
 #include <iostream>
 
@@ -70,6 +71,19 @@ void Player::CollideObject(Object* obj)
 	case ObjectType::ITEM:
 		if (GetComponent<Physics>()->CheckCollision(*obj) == true)
 		{
+			switch (static_cast<Item*>(obj)->GetCurrentItemType())
+			{
+			case ItemType::N:
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::VALCAN);
+				break;
+			case ItemType::H:
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::HOMING);
+				break;
+			case ItemType::L:
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
+				break;
+			}
+
 			Instance::GetObjectManager()->Destroy(obj->GetId());
 		}
 		break;

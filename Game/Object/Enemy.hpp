@@ -6,6 +6,11 @@
 #pragma once
 #include "Object.hpp"
 
+enum class EnemyClass
+{
+	NONE
+};
+
 class Enemy : public Object
 {
 public:

@@ -47,11 +47,12 @@ void Window::Init(const char* title, int width, int height, bool fullscreen)
 	std::cout << "Create Window Successful" << '\n' << std::endl;
 
 	AspectRatio(width, height, screenRatio);
+	glViewport(0, 0, width, height);
 }
 
 void Window::Update(SDL_Event event)
 {
-	if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+	if ((event.type == SDL_WINDOWEVENT) && (event.window.event == SDL_WINDOWEVENT_RESIZED || event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED))
 	{
 		ResizeEventHandler(window, event.window.data1, event.window.data2);
 		AspectRatio(event.window.data1, event.window.data2, screenRatio);

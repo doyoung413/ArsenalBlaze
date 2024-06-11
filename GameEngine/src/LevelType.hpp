@@ -8,4 +8,8 @@
 enum class LevelType
 {
 	TEST = 0,
+	TITLE,
+	STAGE_1,
+	SHOP,
+	OPTION
 };

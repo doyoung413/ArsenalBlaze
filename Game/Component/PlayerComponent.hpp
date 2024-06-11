@@ -7,11 +7,11 @@
 #include "Component.hpp"
 #include "Object/Player.hpp"
 
-
+struct KeySet;
 class PlayerComponent : public Component
 {
 public:
-	PlayerComponent() : Component(ComponentTypes::PLAYERCOMP) {}
+	PlayerComponent();
 	~PlayerComponent() override {};
 
 	void Init() override;

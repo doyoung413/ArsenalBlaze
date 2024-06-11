@@ -40,7 +40,7 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_GLContext context;
 
-	glm::vec2 screenRatio{ 4, 3 };
+	glm::vec2 screenRatio{ 16, 9 };
 	glm::vec2 wSize = { 0,0 };
 
 	glm::vec2 viewPort{ 0, 0 };

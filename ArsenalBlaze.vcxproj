@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngine\src\Application.cpp" />
+    <ClCompile Include="GameEngine\src\BackgroundManager.cpp" />
     <ClCompile Include="GameEngine\src\CameraManager.cpp" />
     <ClCompile Include="GameEngine\src\InputManager.cpp" />
     <ClCompile Include="GameEngine\src\LevelManager.cpp" />
@@ -27,22 +28,33 @@
     <ClCompile Include="GameEngine\src\ObjectManager.cpp" />
     <ClCompile Include="GameEngine\src\Particle.cpp" />
     <ClCompile Include="GameEngine\src\ParticleManager.cpp" />
+    <ClCompile Include="GameEngine\src\SoundManager.cpp" />
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
     <ClCompile Include="Game\Component\Physics.cpp" />
     <ClCompile Include="Game\Component\PlayerComponent.cpp" />
+    <ClCompile Include="Game\FileManager.cpp" />
+    <ClCompile Include="Game\GameManager.cpp" />
+    <ClCompile Include="Game\Level\Option.cpp" />
+    <ClCompile Include="Game\Level\Shop.cpp" />
+    <ClCompile Include="Game\Level\Stage1.cpp" />
     <ClCompile Include="Game\Level\TestLevel.cpp" />
     <ClCompile Include="Game\Main.cpp" />
     <ClCompile Include="Game\Object\Bullet.cpp" />
     <ClCompile Include="Game\Object\Enemy.cpp" />
     <ClCompile Include="Game\Object\EnemyBullet.cpp" />
+    <ClCompile Include="Game\Object\Homing.cpp" />
+    <ClCompile Include="Game\Object\Item.cpp" />
+    <ClCompile Include="Game\Object\Laser.cpp" />
     <ClCompile Include="Game\Object\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine\src\Application.hpp" />
+    <ClInclude Include="GameEngine\src\BackgroundManager.hpp" />
     <ClInclude Include="GameEngine\src\CameraManager.hpp" />
     <ClInclude Include="GameEngine\src\Component.hpp" />
     <ClInclude Include="GameEngine\src\ComponentTypes.hpp" />
+    <ClInclude Include="GameEngine\src\InputKeys.hpp" />
     <ClInclude Include="GameEngine\src\InputManager.hpp" />
     <ClInclude Include="GameEngine\src\Instance.hpp" />
     <ClInclude Include="GameEngine\src\Level.hpp" />
@@ -53,15 +65,24 @@
     <ClInclude Include="GameEngine\src\ObjectType.hpp" />
     <ClInclude Include="GameEngine\src\Particle.hpp" />
     <ClInclude Include="GameEngine\src\ParticleManager.hpp" />
+    <ClInclude Include="GameEngine\src\SoundManager.hpp" />
     <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
     <ClInclude Include="GameEngine\src\Timer.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
     <ClInclude Include="Game\Component\Physics.hpp" />
     <ClInclude Include="Game\Component\PlayerComponent.hpp" />
+    <ClInclude Include="Game\FileManager.hpp" />
+    <ClInclude Include="Game\GameManager.hpp" />
+    <ClInclude Include="Game\Level\Option.hpp" />
+    <ClInclude Include="Game\Level\Shop.hpp" />
+    <ClInclude Include="Game\Level\Stage1.hpp" />
     <ClInclude Include="Game\Level\TestLevel.hpp" />
     <ClInclude Include="Game\Object\Bullet.hpp" />
     <ClInclude Include="Game\Object\Enemy.hpp" />
     <ClInclude Include="Game\Object\EnemyBullet.hpp" />
+    <ClInclude Include="Game\Object\Homing.hpp" />
+    <ClInclude Include="Game\Object\Item.hpp" />
+    <ClInclude Include="Game\Object\Laser.hpp" />
     <ClInclude Include="Game\Object\Player.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

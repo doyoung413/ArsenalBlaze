@@ -17,21 +17,6 @@ void Application::Input()
 	{
 		levelManager.SetGameState(State::END);
 	}
-	if (Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::R))
-	{
-		levelManager.RestartLevel();
-	}
-	if (Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::P))
-	{
-		if (levelManager.GetGameState() == State::UPDATE)
-		{
-			levelManager.SetGameState(State::PAUSE);
-		}
-		else if (levelManager.GetGameState() == State::PAUSE)
-		{
-			levelManager.SetGameState(State::UPDATE);
-		}
-	}
 }
 
 Application::~Application()
@@ -45,13 +30,19 @@ void Application::Init(const char* title, int windowWidth, int windowHeight, boo
 	spriteManager.InitRenderer("Assets/shader.vert", "Assets/shader.frag");
 	cameraManager.Init({ window.GetWindowSize().x, window.GetWindowSize().y });
 
+	gameManager.Init();
+
 	Instance::GetInstance().SetLevelManager(&levelManager);
 	Instance::GetInstance().SetCameraManager(&cameraManager);
 	Instance::GetInstance().SetSpriteManager(&spriteManager);
 	Instance::GetInstance().SetInputManager(&inputManager);
 	Instance::GetInstance().SetObjectManager(&objectManager);
 	Instance::GetInstance().SetParticleManager(&particleManager);
+	Instance::GetInstance().SetBackgroundManager(&backgroundManager);
+	Instance::GetInstance().SetSoundManagerManager(&soundManager);
 	Instance::GetInstance().SetWindow(&window);
+
+	Instance::GetInstance().SetGameManager(&gameManager);
 
 	timer.Init(frameRate);
 }
@@ -77,8 +68,8 @@ void Application::Update()
 				levelManager.SetGameState(State::END);
 				break;
 			case SDL_WINDOWEVENT:
-				if (event.window.event != SDL_WINDOWEVENT_RESIZED || event.window.event != SDL_WINDOWEVENT_MOVED ||
-					event.window.event == SDL_WINDOWEVENT_MINIMIZED)
+				if ((event.window.event != SDL_WINDOWEVENT_RESIZED) || (event.window.event != SDL_WINDOWEVENT_MOVED) ||
+					(event.window.event == SDL_WINDOWEVENT_MINIMIZED))
 				{
 					deltaTime = 0.f;
 				}
@@ -96,10 +87,10 @@ void Application::Update()
 				frameCount = 0;
 			}
 			inputManager.InputPollEvent(event);
+
 			Input();
 			levelManager.Update(deltaTime * 60.f);
 			window.Update(event);
-
 		}
 	}
 }
@@ -117,4 +108,7 @@ void Application::End()
 	Instance::GetInstance().SetInputManager(nullptr);
 	Instance::GetInstance().SetParticleManager(nullptr);
 	Instance::GetInstance().SetObjectManager(nullptr);
+	Instance::GetInstance().SetGameManager(nullptr);
+	Instance::GetInstance().SetBackgroundManager(nullptr);
+	Instance::GetInstance().SetSoundManagerManager(nullptr);
 }

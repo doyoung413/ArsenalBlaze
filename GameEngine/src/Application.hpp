@@ -3,6 +3,7 @@
 //File: Application.hpp
 //Description: Header file for handling of the application
 /*-------------------------------------------------------*/
+#pragma once
 #include "Instance.hpp"
 #include "Timer.hpp"
 
@@ -24,7 +25,11 @@ private:
     LevellManager levelManager;
     InputManager inputManager;
     ParticleManager particleManager;
+    BackgroundManager backgroundManager;
+    SoundManager soundManager;
     Window window;
+
+    GameManager gameManager;
 
     Timer timer;
 };
