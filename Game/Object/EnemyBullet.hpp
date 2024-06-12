@@ -11,7 +11,7 @@ class EnemyBullet : public Object
 public:
 	EnemyBullet() = default;
 	EnemyBullet(float positionX, float positionY, float speedX, float speedY, float width, float height,
-           DrawType drawType, std::string name, ObjectType objectType);
+           DrawType drawType, std::string name);
 	~EnemyBullet() {};
 
 	void Init() override;
@@ -24,6 +24,5 @@ public:
 	bool GetIsBreakableToHit() { return isBreakableToHit; }
 protected:
 	int damage = 5;
-	float delay = 0.f;
 	bool isBreakableToHit = true;
 };

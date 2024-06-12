@@ -72,9 +72,9 @@ void PlayerComponent::Attack()
 {
 	if (isShotReady == true)
 	{
-		//Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 8.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
-		Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
-		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(90.f);
+		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 8.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		//Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		//Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(90.f);
 		//Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::LASER);
 		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
 		isShotReady = false;
@@ -86,7 +86,7 @@ void PlayerComponent::Delay(float dt)
 	if (isShotReady == false)
 	{
 		shotDelay +=  dt;
-		if (shotDelay >= 80.f)
+		if (shotDelay >= 10.f)
 		{
 			shotDelay = 0.f;
 			isShotReady = true;

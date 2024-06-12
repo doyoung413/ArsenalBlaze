@@ -25,6 +25,18 @@
     <Filter Include="Game\FileIO">
       <UniqueIdentifier>{42951111-e37b-4d7e-8e59-1d650e59ce60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\MapEditor">
+      <UniqueIdentifier>{1ceac541-5cb2-40de-aabb-e338295d8f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\ImGui">
+      <UniqueIdentifier>{2cf56756-691e-4a5c-af7a-11a1f2c399bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Enemy">
+      <UniqueIdentifier>{6dd3df3d-a64b-4923-aff6-cf0d3939686a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Enemy\Kinds">
+      <UniqueIdentifier>{06fe5221-7ead-44b0-8922-23cd3d0c963d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Main.cpp">
@@ -51,9 +63,6 @@
     <ClCompile Include="GameEngine\src\LevelManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Level\TestLevel.cpp">
-      <Filter>Game\Level</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine\src\Application.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -65,12 +74,6 @@
     </ClCompile>
     <ClCompile Include="GameEngine\src\ParticleManager.cpp">
       <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Object\Enemy.cpp">
-      <Filter>Game\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Object\EnemyBullet.cpp">
-      <Filter>Game\Object</Filter>
     </ClCompile>
     <ClCompile Include="Game\Object\Player.cpp">
       <Filter>Game\Object</Filter>
@@ -110,6 +113,66 @@
     </ClCompile>
     <ClCompile Include="Game\FileManager.cpp">
       <Filter>Game\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MapEditor.cpp">
+      <Filter>Game\MapEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_draw.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_tables.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_widgets.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\imgui_demo.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\backends\imgui_impl_sdl2.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\ImGui\backends\imgui_impl_opengl3.cpp">
+      <Filter>Engine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Component\EnemyAttack.cpp">
+      <Filter>Game\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Enemy.cpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyBullet.cpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyMissile.cpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyToward.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyMoveS.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyMoveU.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemySideAppear.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyBigA.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyTowardA.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemyRobotA.cpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\EnemySpreadBullet.cpp">
+      <Filter>Game\Object\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +215,6 @@
     <ClInclude Include="GameEngine\src\LevelType.hpp">
       <Filter>Game\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Level\TestLevel.hpp">
-      <Filter>Game\Level</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine\src\Application.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -169,12 +229,6 @@
     </ClInclude>
     <ClInclude Include="GameEngine\src\ParticleManager.hpp">
       <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Object\Enemy.hpp">
-      <Filter>Game\Object</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Object\EnemyBullet.hpp">
-      <Filter>Game\Object</Filter>
     </ClInclude>
     <ClInclude Include="Game\Object\Player.hpp">
       <Filter>Game\Object</Filter>
@@ -217,6 +271,72 @@
     </ClInclude>
     <ClInclude Include="Game\FileManager.hpp">
       <Filter>Game\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MapEditor.hpp">
+      <Filter>Game\MapEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui_internal.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_rectpack.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_textedit.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imstb_truetype.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imconfig.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\imgui.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\backends\imgui_impl_opengl3.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\ImGui\backends\imgui_impl_sdl2.h">
+      <Filter>Engine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Component\EnemyAttack.hpp">
+      <Filter>Game\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Enemy.hpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyBullet.hpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyMissile.hpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyToward.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyMoveS.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyMoveU.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemySideAppear.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyBigA.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyTowardA.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyRobotA.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemySpreadBullet.hpp">
+      <Filter>Game\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\EnemyType.hpp">
+      <Filter>Game\Object\Enemy\Kinds</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 /*-------------------------------------------------------*/
 #include "Application.hpp"
 
-#include "Level/TestLevel.hpp"
+#include "Level/Stage1.hpp"
 #include "Level/Shop.hpp"
 #include "Level/Option.hpp"
 
@@ -21,9 +21,9 @@ int main()
 	Instance::GetSoundManager()->Initialize(8);
 
 	Instance::GetSpriteManager()->SetBackGroundColor({ 0.f,0.f,0.f,1.f });
+	Instance::GetLevelManager()->AddLevel(new Stage1());
 	Instance::GetLevelManager()->AddLevel(new Option());
 	Instance::GetLevelManager()->AddLevel(new Shop());
-	Instance::GetLevelManager()->AddLevel(new TestLevel());
 
 	FileManager::LoadSetting("../Setting.ini");
 	application.Update();

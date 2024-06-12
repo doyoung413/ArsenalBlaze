@@ -10,8 +10,8 @@
 #include <iostream>
 
 EnemyBullet::EnemyBullet(float positionX, float positionY, float speedX, float speedY, float width,
-	float height, DrawType drawType, std::string name, ObjectType objectType)
-	: Object(positionX, positionY, speedX, speedY, width, height, drawType, name, objectType)
+	float height, DrawType drawType, std::string name)
+	: Object(positionX, positionY, speedX, speedY, width, height, drawType, name, ObjectType::ENEMYBULLET)
 {
 	AddComponent<Physics>();
 	GetComponent<Physics>()->Init({ width, height });

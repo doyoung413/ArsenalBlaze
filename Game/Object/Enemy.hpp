@@ -5,18 +5,14 @@
 /*-------------------------------------------------------*/
 #pragma once
 #include "Object.hpp"
-
-enum class EnemyClass
-{
-	NONE
-};
+#include "Object/EnemyType.hpp"
 
 class Enemy : public Object
 {
 public:
     Enemy() = default;
 	Enemy(float positionX, float positionY, float speedX, float speedY, float width, float height,
-           DrawType drawType, std::string name, ObjectType objectType);
+           DrawType drawType, std::string name);
 	~Enemy() {};
 
 	void Init() override;
@@ -35,12 +31,19 @@ public:
 	void SetInvincibleState(bool state) { isInvincible = state;}
 	bool GetInvincibleState() { return isInvincible; }
 
-	glm::vec2 GetSpawnPosition() { return spawnPosition; }
-	void SetSpawnPosition(glm::vec2 pos) { spawnPosition = pos; }
 	void SetAngleToTarget(Object* target);
 
 	bool GetIsGround() { return isGround; }
 	void SetIsGround(bool state) { isGround = state; }
+
+	bool GetIsReadyToFight() { return isReadyToFight; }
+	void SetIsReadyToFight(bool state) { isReadyToFight = state; }
+
+	float GetReverse() { return reverse; }
+	glm::vec2 GetSpawnPositionOffset() { return spawnPositionOffset; }
+	glm::vec2 GetStopPositionOffset() { return stopPositionOffset; }
+
+	EnemyType GetEnemyType() { return enemyTypes; }
 
 	void Hit(float dt);
 	void Death(float dt);
@@ -52,10 +55,19 @@ protected:
 
 	float invincibleDelay = 0.f;
 
+	bool isReadyToFight = true;
 	bool isHit = false;
 	bool isInvincible = false;
 	bool isInCamera = false;
 	bool isGround = false;
+	float reverse = 1.f;
+
+	glm::vec2 viewSize = { 0.f,0.f };
+	glm::vec2 cameraCenter = { 0.f,0.f };
 
 	glm::vec2 spawnPosition = { 0.f,0.f };
+	glm::vec2 spawnPositionOffset = { 0.f,0.f };
+	glm::vec2 stopPositionOffset = { 0.f,0.f };
+
+	EnemyType enemyTypes = EnemyType::NONE;
 };

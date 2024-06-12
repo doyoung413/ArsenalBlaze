@@ -4,6 +4,7 @@
 //Description: Source file for handling of the application
 /*-------------------------------------------------------*/
 #include "Application.hpp"
+#include "backends/imgui_impl_sdl2.h"
 
 #include <iostream>
 
@@ -62,6 +63,7 @@ void Application::Update()
 		if (deltaTime > 1.f / static_cast<float>(timer.GetFrameRate()))
 		{
 			SDL_PollEvent(&event);
+			window.SetEvenet(event);
 			switch (event.type)
 			{
 			case SDL_QUIT:
@@ -90,7 +92,7 @@ void Application::Update()
 
 			Input();
 			levelManager.Update(deltaTime * 60.f);
-			window.Update(event);
+			window.Update();
 		}
 	}
 }

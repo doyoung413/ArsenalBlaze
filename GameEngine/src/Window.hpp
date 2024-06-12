@@ -17,10 +17,11 @@ public:
 	~Window() = default;
 	void Init(const char* title, int width, int height, bool fullscreen);
 
-	void Update(SDL_Event event);
+	void Update();
 	void End();
 
 	SDL_Window* GetWindow() { return window; };
+	SDL_GLContext GetGLContext() { return context; }
 
 	void ChangeWindowSize(int width, int height);
 	glm::vec2 GetWindowSize() { return wSize; }
@@ -33,12 +34,17 @@ public:
 
 	glm::vec2 GetViewPort() { return viewPort; }
 	glm::vec2 GetViewPortSize() { return viewPortSize; }
+
+	SDL_Event& GetEvent() { return event; }
+	void SetEvenet(SDL_Event event_) { event = event_; }
 private:
 	void ResizeEventHandler(SDL_Window* window, int width, int height);
 	void AspectRatio(int width, int height, glm::vec2 ratio);
 
 	SDL_Window* window = nullptr;
 	SDL_GLContext context;
+
+	SDL_Event event;
 
 	glm::vec2 screenRatio{ 16, 9 };
 	glm::vec2 wSize = { 0,0 };

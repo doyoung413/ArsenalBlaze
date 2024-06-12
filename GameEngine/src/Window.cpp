@@ -50,7 +50,7 @@ void Window::Init(const char* title, int width, int height, bool fullscreen)
 	glViewport(0, 0, width, height);
 }
 
-void Window::Update(SDL_Event event)
+void Window::Update()
 {
 	if ((event.type == SDL_WINDOWEVENT) && (event.window.event == SDL_WINDOWEVENT_RESIZED || event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED))
 	{

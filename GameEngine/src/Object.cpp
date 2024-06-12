@@ -93,11 +93,10 @@ bool Object::isEdgeOfCamera() noexcept
 {
 	glm::vec2 windowSize = { static_cast<float>(Instance::GetCameraManager()->GetViewSize().x),
 		static_cast<float>(Instance::GetCameraManager()->GetViewSize().y) };
-	windowSize = (windowSize / Instance::GetCameraManager()->GetZoom());
 	glm::vec2 cameraCenter = Instance::GetCameraManager()->GetCenter();
 
-	if (!(size.x < -(windowSize.x / 2.f + cameraCenter.x) || (windowSize.x / 2.f + cameraCenter.x) < size.x || size.y < -(windowSize.y / 2.f + cameraCenter.y) ||
-		(windowSize.y / 2.f + cameraCenter.y) < size.y))
+	if (!(position.x + size.x < -(windowSize.x / 2.f + cameraCenter.x) || (windowSize.x / 2.f + cameraCenter.x) < position.x - size.x 
+		|| position.y + size.y < -(windowSize.y / 2.f + cameraCenter.y) || (windowSize.y / 2.f + cameraCenter.y) < position.y - size.y))
 	{
 		return true;
 	}
@@ -108,7 +107,6 @@ bool Object::isInOfCamera() noexcept
 {
 	glm::vec2 windowSize = { static_cast<float>(Instance::GetCameraManager()->GetViewSize().x),
 		static_cast<float>(Instance::GetCameraManager()->GetViewSize().y) };
-	windowSize = (windowSize / Instance::GetCameraManager()->GetZoom());
 	glm::vec2 cameraCenter = Instance::GetCameraManager()->GetCenter();
 	if (position.x - (size.x) < (windowSize.x / 2.f + cameraCenter.x) && position.x + (size.x) > -(windowSize.x / 2.f - cameraCenter.x)
 		&& position.y - (size.y) < (windowSize.y / 2.f + cameraCenter.y) && position.y + (size.y) > -(windowSize.y / 2.f - cameraCenter.y))
@@ -122,7 +120,6 @@ bool Object::isOutOfCamera() noexcept
 {
 	glm::vec2 windowSize = { static_cast<float>(Instance::GetCameraManager()->GetViewSize().x),
 		static_cast<float>(Instance::GetCameraManager()->GetViewSize().y) };
-	windowSize = (windowSize / Instance::GetCameraManager()->GetZoom());
 	glm::vec2 cameraCenter = Instance::GetCameraManager()->GetCenter();
 	if (position.x > (windowSize.x / 2.f + cameraCenter.x) + (size.x) || position.x < -(windowSize.x / 2.f - cameraCenter.x) - (size.x)
 		|| position.y >(windowSize.y / 2.f + cameraCenter.y) + (size.y) || position.y < -(windowSize.y / 2.f - cameraCenter.y) - (size.y))

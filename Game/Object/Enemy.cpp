@@ -9,16 +9,16 @@
 #include "Component/Physics.hpp"
 
 Enemy::Enemy(float positionX, float positionY, float speedX, float speedY, float width,
-	float height, DrawType drawType, std::string name, ObjectType objectType)
-	: Object(positionX, positionY, speedX, speedY, width, height, drawType, name, objectType)
+	float height, DrawType drawType, std::string name)
+	: Object(positionX, positionY, speedX, speedY, width, height, drawType, name, ObjectType::ENEMY)
 {
-	objectType = ObjectType::ENEMY;
 	AddComponent<Physics>();
 	GetComponent<Physics>()->Init({ width, height });
 
 	SetDepth(0.49f);
 
-	spawnPosition = { positionX , positionY };
+	viewSize = { static_cast<float>(Instance::GetCameraManager()->GetViewSize().x), static_cast<float>(Instance::GetCameraManager()->GetViewSize().y) };
+	cameraCenter = Instance::GetCameraManager()->GetCenter();
 }
 
 void Enemy::Init()
@@ -39,12 +39,14 @@ void Enemy::Update(float dt)
 	}
 	else if (isInCamera == false)
 	{
+		Object::Draw(dt);
+		position.y += Instance::GetGameManager()->GetScrollSpeed().y;
 		if (isEdgeOfCamera() == true)
 		{
 			isInCamera = true;
 			if (isGround == false)
 			{
-				position = { spawnPosition, 0.f };
+				position = { spawnPosition + spawnPositionOffset, 0.f };
 			}
 		}
 	}
@@ -77,7 +79,7 @@ void Enemy::SetAngleToTarget(Object* target)
 		float dx = target->GetPosition().x - position.x;
 		float dy = target->GetPosition().y - position.y;
 
-		int angleToTarget = static_cast<int>(atan2(dy, dx) * -60.f);
+		int angleToTarget = static_cast<int>(atan2(dy, dx) * 60.f);
 
 		angle = static_cast<float>(angleToTarget - (angleToTarget % 5));
 	}

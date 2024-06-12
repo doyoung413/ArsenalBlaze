@@ -15,6 +15,7 @@ enum class ObjectType
 	ITEM,
 	ENEMY,
 	ENEMYBULLET,
+	ENEMYMISSILE,
 	BOSS,
 	LAST
 };

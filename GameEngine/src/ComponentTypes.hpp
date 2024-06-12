@@ -10,5 +10,6 @@ enum class ComponentTypes
     INVALID = 0,
 	PHYSICS,
 	PLAYERCOMP,
+	ENEMYATTACK,
 	LAST
 };

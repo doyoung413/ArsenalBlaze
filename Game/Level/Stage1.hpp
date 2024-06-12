@@ -2,6 +2,10 @@
 #include "Level.hpp"
 #include "Instance.hpp"
 
+#ifdef _DEBUG
+#include "MapEditor.hpp"
+#endif
+
 class Stage1 : public Level
 {
 public:
@@ -14,10 +18,14 @@ public:
 	void End() override;
 
 private:
-	SpriteManager* spriteManager = nullptr;
 	GameManager* gameManager = nullptr;
 	ObjectManager* objectManager = nullptr;
 	CameraManager* cameraManager = nullptr;
 	BackgroundManager* backgroundManager = nullptr;
 	SoundManager* soundManager = nullptr;
+
+
+#ifdef _DEBUG
+	MapEditor mapEditor;
+#endif
 };

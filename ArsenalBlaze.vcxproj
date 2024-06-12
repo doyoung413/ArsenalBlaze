@@ -19,6 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="External\ImGui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="External\ImGui\backends\imgui_impl_sdl2.cpp" />
+    <ClCompile Include="External\ImGui\imgui.cpp" />
+    <ClCompile Include="External\ImGui\imgui_demo.cpp" />
+    <ClCompile Include="External\ImGui\imgui_draw.cpp" />
+    <ClCompile Include="External\ImGui\imgui_tables.cpp" />
+    <ClCompile Include="External\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="GameEngine\src\Application.cpp" />
     <ClCompile Include="GameEngine\src\BackgroundManager.cpp" />
     <ClCompile Include="GameEngine\src\CameraManager.cpp" />
@@ -31,6 +38,7 @@
     <ClCompile Include="GameEngine\src\SoundManager.cpp" />
     <ClCompile Include="GameEngine\src\SpriteManager.cpp" />
     <ClCompile Include="GameEngine\src\Window.cpp" />
+    <ClCompile Include="Game\Component\EnemyAttack.cpp" />
     <ClCompile Include="Game\Component\Physics.cpp" />
     <ClCompile Include="Game\Component\PlayerComponent.cpp" />
     <ClCompile Include="Game\FileManager.cpp" />
@@ -38,17 +46,34 @@
     <ClCompile Include="Game\Level\Option.cpp" />
     <ClCompile Include="Game\Level\Shop.cpp" />
     <ClCompile Include="Game\Level\Stage1.cpp" />
-    <ClCompile Include="Game\Level\TestLevel.cpp" />
     <ClCompile Include="Game\Main.cpp" />
+    <ClCompile Include="Game\MapEditor.cpp" />
     <ClCompile Include="Game\Object\Bullet.cpp" />
     <ClCompile Include="Game\Object\Enemy.cpp" />
+    <ClCompile Include="Game\Object\EnemyBigA.cpp" />
     <ClCompile Include="Game\Object\EnemyBullet.cpp" />
+    <ClCompile Include="Game\Object\EnemyMissile.cpp" />
+    <ClCompile Include="Game\Object\EnemyMoveS.cpp" />
+    <ClCompile Include="Game\Object\EnemyMoveU.cpp" />
+    <ClCompile Include="Game\Object\EnemyRobotA.cpp" />
+    <ClCompile Include="Game\Object\EnemySideAppear.cpp" />
+    <ClCompile Include="Game\Object\EnemySpreadBullet.cpp" />
+    <ClCompile Include="Game\Object\EnemyToward.cpp" />
+    <ClCompile Include="Game\Object\EnemyTowardA.cpp" />
     <ClCompile Include="Game\Object\Homing.cpp" />
     <ClCompile Include="Game\Object\Item.cpp" />
     <ClCompile Include="Game\Object\Laser.cpp" />
     <ClCompile Include="Game\Object\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="External\ImGui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="External\ImGui\backends\imgui_impl_sdl2.h" />
+    <ClInclude Include="External\ImGui\imconfig.h" />
+    <ClInclude Include="External\ImGui\imgui.h" />
+    <ClInclude Include="External\ImGui\imgui_internal.h" />
+    <ClInclude Include="External\ImGui\imstb_rectpack.h" />
+    <ClInclude Include="External\ImGui\imstb_textedit.h" />
+    <ClInclude Include="External\ImGui\imstb_truetype.h" />
     <ClInclude Include="GameEngine\src\Application.hpp" />
     <ClInclude Include="GameEngine\src\BackgroundManager.hpp" />
     <ClInclude Include="GameEngine\src\CameraManager.hpp" />
@@ -69,6 +94,7 @@
     <ClInclude Include="GameEngine\src\SpriteManager.hpp" />
     <ClInclude Include="GameEngine\src\Timer.hpp" />
     <ClInclude Include="GameEngine\src\Window.hpp" />
+    <ClInclude Include="Game\Component\EnemyAttack.hpp" />
     <ClInclude Include="Game\Component\Physics.hpp" />
     <ClInclude Include="Game\Component\PlayerComponent.hpp" />
     <ClInclude Include="Game\FileManager.hpp" />
@@ -76,10 +102,20 @@
     <ClInclude Include="Game\Level\Option.hpp" />
     <ClInclude Include="Game\Level\Shop.hpp" />
     <ClInclude Include="Game\Level\Stage1.hpp" />
-    <ClInclude Include="Game\Level\TestLevel.hpp" />
+    <ClInclude Include="Game\MapEditor.hpp" />
     <ClInclude Include="Game\Object\Bullet.hpp" />
     <ClInclude Include="Game\Object\Enemy.hpp" />
+    <ClInclude Include="Game\Object\EnemyBigA.hpp" />
     <ClInclude Include="Game\Object\EnemyBullet.hpp" />
+    <ClInclude Include="Game\Object\EnemyMissile.hpp" />
+    <ClInclude Include="Game\Object\EnemyMoveS.hpp" />
+    <ClInclude Include="Game\Object\EnemyMoveU.hpp" />
+    <ClInclude Include="Game\Object\EnemyRobotA.hpp" />
+    <ClInclude Include="Game\Object\EnemySideAppear.hpp" />
+    <ClInclude Include="Game\Object\EnemySpreadBullet.hpp" />
+    <ClInclude Include="Game\Object\EnemyToward.hpp" />
+    <ClInclude Include="Game\Object\EnemyTowardA.hpp" />
+    <ClInclude Include="Game\Object\EnemyType.hpp" />
     <ClInclude Include="Game\Object\Homing.hpp" />
     <ClInclude Include="Game\Object\Item.hpp" />
     <ClInclude Include="Game\Object\Laser.hpp" />
@@ -160,7 +196,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\ImGui;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -182,7 +218,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\ImGui;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -204,7 +240,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\ImGui;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -227,7 +263,7 @@ xcopy "$(SolutionDir)External\SDL\lib\$(Platform)\SDL2.dll"  "$(SolutionDir)" /Y
       <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)External\glew\include;$(SolutionDir)External\stbi;$(SolutionDir)External\glm;$(SolutionDir)External\ImGui;$(SolutionDir)External\Graphics\;$(SolutionDir)External\FMOD\inc;$(SolutionDir)External\SDL\include;$(SolutionDir)GameEngine\src\;$(SolutionDir)Game\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>

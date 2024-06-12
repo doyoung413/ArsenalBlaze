@@ -1,6 +1,7 @@
 #include "Homing.hpp"
 #include "Instance.hpp"
 #include "Component/Physics.hpp"
+#include "Object/Enemy.hpp"
 
 #include <iostream>
 #include <cmath>
@@ -138,7 +139,7 @@ void Homing::SetTarget()
 {
 	for (auto& obj : Instance::GetObjectManager()->GetObjectMap())
 	{
-		if (obj.second.get()->GetObjectType() == ObjectType::ENEMY &&
+		if (obj.second.get()->GetObjectType() == ObjectType::ENEMY && static_cast<Enemy*>(obj.second.get())->GetIsReadyToFight() == true &&
 			IsSerach(obj.second.get()))
 		{
 			float deltaX = obj.second.get()->GetPosition().x - position.x;
