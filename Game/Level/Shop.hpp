@@ -1,6 +1,8 @@
 #pragma once
 #include "Level.hpp"
 #include "Instance.hpp"
+
+#include "Object/Player.hpp"
 #include "Text/Text.hpp"
 
 enum class ShopState
@@ -44,4 +46,5 @@ private:
 	InputManager* inputManager = nullptr;
 
 	ShopState shopState = ShopState::MAIN;
+	Player* player = nullptr;
 };

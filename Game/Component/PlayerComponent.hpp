@@ -21,7 +21,10 @@ public:
 	void SetInvincibleState(bool state) { isInvincible = state; }
 	bool GetInvincibleState() { return isInvincible; }
 
+	void SetMaxSubShotDelay(float maxDelay);
+
 	void Attack();
+	void SubAttack();
 private:
 	void Input(float dt);
 	void Delay(float dt);
@@ -31,8 +34,13 @@ private:
 
 	float playerMoveSpeed = 7.f;
 
+	float maxShotDelay = 10.f;
 	float shotDelay = 0.0f;
 	bool isShotReady = true;
+
+	float maxSubShotDelay = 20.f;
+	float subShotDelay = 0.0f;
+	bool isSubShotReady = false;
 
 	float invincibleDelay = 0.f;
 

@@ -40,7 +40,7 @@ void PlayerComponent::Update(float dt)
 
 void PlayerComponent::Input(float dt)
 {
-	if (Instance::GetLevelManager()->GetGameState() != State::PAUSE)
+	if (Instance::GetLevelManager()->GetGameState() != State::PAUSE && Instance::GetGameManager()->GetIsPlayerCanControl() == true)
 	{
 		if (isHit == false)
 		{
@@ -68,16 +68,97 @@ void PlayerComponent::Input(float dt)
 	}
 }
 
+void PlayerComponent::SetMaxSubShotDelay(float maxDelay)
+{
+	maxSubShotDelay = maxDelay;
+	subShotDelay = 0.f;
+	isSubShotReady = false;
+}
+
 void PlayerComponent::Attack()
 {
 	if (isShotReady == true)
 	{
-		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 8.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
-		//Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
-		//Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(90.f);
-		//Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y, 0.f, 20.f, 12.f, 12.f, DrawType::RECTANGLE, "Bullet", ObjectType::LASER);
+		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x + 12.f, GetOwner()->GetPosition().y, 0.f, 15.f, 20.f, 5.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
 		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetSpriteName("BulletW");
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+
+		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x - 12.f, GetOwner()->GetPosition().y, 0.f, 15.f, 20.f, -5.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetSpriteName("BulletW");
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+
+		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x + 12.f, GetOwner()->GetPosition().y, 2.f, 15.f, 17.f, 3.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		static_cast<Bullet*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->SetDamage(static_cast<Bullet*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->GetDamage() / 2.f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetSpriteName("BulletWS");
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(280.f);
+
+		Instance::GetObjectManager()->AddObject<Bullet>(GetOwner()->GetPosition().x - 12.f, GetOwner()->GetPosition().y, -2.f, 15.f, 17.f, -3.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+		static_cast<Bullet*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->SetDamage(static_cast<Bullet*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->GetDamage() / 2.f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetSpriteName("BulletWS");
+		Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(260.f);
 		isShotReady = false;
+	}
+}
+
+void PlayerComponent::SubAttack()
+{
+	if (isSubShotReady == true)
+	{
+		switch (Instance::GetGameManager()->GetPlayerWeapon())
+		{
+		case PlayerWeapon::HOMING:
+			switch (static_cast<int>(Instance::GetGameManager()->GetWeaponPower().homing))
+			{
+			case 0:
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x + 16.f, GetOwner()->GetPosition().y - 32.f, 2.f, 10.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x - 16.f, GetOwner()->GetPosition().y - 32.f, -2.f, 10.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+				break;
+			case 1:
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x + 16.f, GetOwner()->GetPosition().y - 32.f, 2.f, 10.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x - 16.f, GetOwner()->GetPosition().y - 32.f, -2.f, 10.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+
+
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x + 16.f, GetOwner()->GetPosition().y - 32.f, 0.125f, 2.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+				Instance::GetObjectManager()->AddObject<Homing>(GetOwner()->GetPosition().x - 16.f, GetOwner()->GetPosition().y - 32.f, -0.125f, 2.f, 16.f, 8.f, DrawType::RECTANGLE, "Bullet", ObjectType::BULLET);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.48f);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetRotate(270.f);
+				break;
+			}
+			break;
+		case PlayerWeapon::LASER:
+			switch (static_cast<int>(Instance::GetGameManager()->GetWeaponPower().laser))
+			{
+			case 0:
+				Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y + 26.f, 0.f, 0.f, 13.f, 13.f, DrawType::SPRITEANIMATION, "Laser", ObjectType::LASER);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.7f);
+				static_cast<Laser*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->SetDistance(0, 26.f);
+				break;
+			case 1:
+				Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x + 26.f, GetOwner()->GetPosition().y + 26.f, 0.f, 0.f, 13.f, 13.f, DrawType::SPRITEANIMATION, "Laser", ObjectType::LASER);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.7f);
+				static_cast<Laser*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->SetDistance(26.f, 26.f);
+
+				Instance::GetObjectManager()->AddObject<Laser>(GetOwner()->GetPosition().x - 26.f, GetOwner()->GetPosition().y + 26.f, 0.f, 0.f, 13.f, 13.f, DrawType::SPRITEANIMATION, "Laser", ObjectType::LASER);
+				Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID())->SetDepth(0.7f);
+				static_cast<Laser*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())->SetDistance(-26.f, 26.f);
+				break;
+			}
+		}
+		isSubShotReady = false;
 	}
 }
 
@@ -86,10 +167,19 @@ void PlayerComponent::Delay(float dt)
 	if (isShotReady == false)
 	{
 		shotDelay +=  dt;
-		if (shotDelay >= 10.f)
+		if (shotDelay >= maxShotDelay)
 		{
 			shotDelay = 0.f;
 			isShotReady = true;
+		}
+	}
+	if (isSubShotReady == false)
+	{
+		subShotDelay += dt;
+		if (subShotDelay >= maxSubShotDelay)
+		{
+			subShotDelay = 0.f;
+			isSubShotReady = true;
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #include "Shop.hpp"
 
+#include "Component/PlayerComponent.hpp"
 #include <string>
 
 void Shop::Init()
@@ -12,6 +13,9 @@ void Shop::Init()
 
 	text.LoadFromFile("Assets/font.fnt");
 	text.SetShader(spriteManager->GetShader());
+
+	player = new Player(128.f, 0.f, 0.f, 0.f, 46.f, 45.f, DrawType::RECTANGLE, "PlayerTemp", ObjectType::PLAYER);
+	gameManager->SetIsPlayerCanControl(false);
 }
 
 void Shop::Update(float dt)
@@ -23,12 +27,13 @@ void Shop::Update(float dt)
 		break;
 	case ShopState::WEAPON:
 		WeaponShop();
+		player->Update(dt);
 		break;
 	case ShopState::EQUIPEMENT:
 		EquipmentShop();
 		break;
 	}
-	text.DrawTextWithColor("MONEY " + std::to_string(gameManager->GetMoney()), 176.f, -224.f, 0.f, 1.0f, {1.f, 1.f, 1.f, 1.f});
+	text.DrawTextWithColor("MONEY " + std::to_string(gameManager->GetMoney()), 128.f, -224.f, 0.f, 1.0f, {1.f, 1.f, 1.f, 1.f});
 	
 	Input();
 	if (isWarningOn == true)
@@ -49,11 +54,16 @@ void Shop::Restart()
 
 void Shop::End()
 {
+	gameManager->SetIsPlayerCanControl(true);
+	delete player;
+	player = nullptr;
+
 	spriteManager = nullptr;
 	gameManager = nullptr;
 	objectManager = nullptr;
 	soundManager = nullptr;
 	inputManager = nullptr;
+
 }
 
 void Shop::Input()
@@ -80,6 +90,8 @@ void Shop::Input()
 			switch (selectionIndex)
 			{
 			case 0:
+				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(20.f);
 				selectionIndex = 0;
 				shopState = ShopState::WEAPON;
 				break;
@@ -103,12 +115,40 @@ void Shop::Input()
 			{
 				--selectionIndex;
 			}
+			if (selectionIndex == 0)
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
+			}
+			else if (selectionIndex == 1)
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::HOMING);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(80.f);
+			}
+			else
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
+			}
 		}
 		else if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
 		{
 			if (selectionIndex < 4)
 			{
 				++selectionIndex;
+			}
+			if (selectionIndex == 0)
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
+			}
+			else if (selectionIndex == 1)
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::HOMING);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(80.f);
+			}
+			else
+			{
+				gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
 			}
 		}
 		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
@@ -232,6 +272,8 @@ void Shop::WeaponShop()
 		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
 		break;
 	}
+	player->GetComponent<PlayerComponent>()->Attack();
+	player->GetComponent<PlayerComponent>()->SubAttack();
 }
 
 void Shop::EquipmentShop()
@@ -344,13 +386,29 @@ void Shop::WeaponUpgrade()
 	case 0:
 		if (Buy(100))
 		{
+			if (gameManager->GetWeaponPower().laser < 1)
+			{
+				gameManager->SetMoney(gameManager->GetMoney() - 100);
+				gameManager->SetWeaponPower(PlayerWeapon::LASER, 1);
+			}
+			else 
+			{
 
+			}
 		}
 		break;
 	case 1:
 		if (Buy(100))
 		{
+			if (gameManager->GetWeaponPower().homing < 1)
+			{
+				gameManager->SetMoney(gameManager->GetMoney() - 100);
+				gameManager->SetWeaponPower(PlayerWeapon::HOMING, 1);
+			}
+			else
+			{
 
+			}
 		}
 		break;
 	case 2:
@@ -366,6 +424,8 @@ void Shop::WeaponUpgrade()
 		}
 		break;
 	case 4:
+		objectManager->DestroyAllObjects();
+		gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
 		selectionIndex = 0;
 		shopState = ShopState::MAIN;
 		break;
@@ -379,13 +439,23 @@ void Shop::EquipmentUpgrade()
 	case 0:
 		if (Buy(100))
 		{
-
+			gameManager->SetMoney(gameManager->GetMoney() - 100);
+			gameManager->SetMaxHp(gameManager->GetMaxHp() + 10);
+			gameManager->AddHp(10);
 		}
 		break;
 	case 1:
 		if (Buy(100))
 		{
+			if (gameManager->GetIsBarrier() != true)
+			{
+				gameManager->SetMoney(gameManager->GetMoney() - 100); 
+				gameManager->SetIsBarrier(true);
+			}
+			else
+			{
 
+			}
 		}
 		break;
 	case 2:

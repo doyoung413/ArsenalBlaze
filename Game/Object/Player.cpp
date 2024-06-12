@@ -74,13 +74,15 @@ void Player::CollideObject(Object* obj)
 			switch (static_cast<Item*>(obj)->GetCurrentItemType())
 			{
 			case ItemType::N:
-				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::VALCAN);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
 				break;
 			case ItemType::H:
 				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::HOMING);
+				GetComponent<PlayerComponent>()->SetMaxSubShotDelay(80.f);
 				break;
 			case ItemType::L:
 				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
+				GetComponent<PlayerComponent>()->SetMaxSubShotDelay(20.f);
 				break;
 			}
 

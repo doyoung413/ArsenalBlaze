@@ -11,9 +11,28 @@ enum class GameMode
 enum class PlayerWeapon
 {
 	NONE,
-	VALCAN,
+	NORMAL,
 	LASER,
 	HOMING,
+};
+
+struct WeaponPower
+{
+	int normal = 0;
+	int laser = 0;
+	int homing = 0;
+};
+
+struct PlayerState
+{
+	int money = 1000;
+	int MaxHp = 50;
+	int hp = 50;
+
+	PlayerWeapon weapons[2] = { PlayerWeapon::NORMAL, PlayerWeapon::NORMAL };
+	int currentWeaponIndex = 0;
+	bool isBarrier = false;
+	WeaponPower weaponPower;
 };
 
 struct KeySet
@@ -52,16 +71,22 @@ public:
 
 	GameMode GetGameMode() { return gameMode; }
 	void SetGameMode(GameMode mode) { gameMode = mode; }
-	void SetMaxHp(int hp_) { MaxHp = hp_; }
+	void SetMaxHp(int hp_) { playerState.MaxHp = hp_; }
+	int GetMaxHp() { return playerState.MaxHp; }
+
 	void AddHp(int hp_);
-	int GetHp() { return hp; }
+	int GetHp() { return playerState.hp; }
 
-	void SetMoney(int money_) { money += money_; }
-	int GetMoney() { return money; }
+	void SetMoney(int money_) { playerState.money = money_; }
+	int GetMoney() { return playerState.money; }
 
-	PlayerWeapon GetPlayerWeapon() { return weapon; }
-	void SetPlayerWeapon(PlayerWeapon weapon_) { weapon = weapon_; }
-	void SetPlayerWeaponLater(PlayerWeapon weapon_) { weaponTemp = weapon_; }
+	PlayerWeapon GetPlayerWeapon() { return playerState.weapons[playerState.currentWeaponIndex]; }
+	void SetPlayerWeapon(PlayerWeapon weapon_) { playerState.weapons[playerState.currentWeaponIndex] = weapon_; }
+	void SetWeaponPower(PlayerWeapon weapon, int powerLevel);
+	WeaponPower GetWeaponPower() { return playerState.weaponPower; }
+
+	void SetIsBarrier(bool state) { playerState.isBarrier = state; }
+	bool GetIsBarrier() { return playerState.isBarrier; }
 
 	void SetIsPlayerCanControl(bool state) { isPlayerCanControl = state; }
 	bool GetIsPlayerCanControl() { return isPlayerCanControl; }
@@ -69,20 +94,11 @@ public:
 	KeySet& GetKeySetting() { return set; }
 private:
 	int score = 0;
-	int highScore = 0;
-
-	int money = 0;
-
-	int MaxHp = 50;
-	int hp = 50;
 
 	glm::vec2 ScrollSpeed = { 0.f, 0.f };
-
 	GameMode gameMode = GameMode::RUNNING;
-	PlayerWeapon weapon = PlayerWeapon::VALCAN;
-	PlayerWeapon weaponTemp = PlayerWeapon::NONE;
-
 	bool isPlayerCanControl = true;
 
+	PlayerState playerState;
 	KeySet set;
 };

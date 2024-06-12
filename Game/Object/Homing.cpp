@@ -13,9 +13,9 @@ Homing::Homing(float positionX, float positionY, float speedX, float speedY, flo
 	objectType = ObjectType::BULLET;
 
 	AddComponent<Physics>();
-	GetComponent<Physics>()->SetAcceleration({ 1.0f, 1.f });
+	GetComponent<Physics>()->SetAcceleration({ 1.0f, 0.7f });
 	GetComponent<Physics>()->SetGravity(0.f);
-	GetComponent<Physics>()->SetMaxVelocity({ 10.0f, 10.0f });
+	GetComponent<Physics>()->SetMaxVelocity({ 3.0f, 13.0f });
 	Init();
 }
 
@@ -114,9 +114,9 @@ void Homing::Update(float dt)
 	}
 	else
 	{
-		GetComponent<Physics>()->Move(speed.x, speed.y, dt);
+		GetComponent<Physics>()->Move(speed.x, -0.3f, dt);
 		delay += dt;
-		if (delay > 0.f)
+		if (delay > 30.f)
 		{
 			delay = 0.f;
 			isLockReady = true;
