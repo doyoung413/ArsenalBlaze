@@ -15,12 +15,12 @@ public:
 
 	void SetDamage(float amount) { damage = amount;}
 	float GetDamage() {return damage;}
-
 	void SetDistance(float x, float y) { distance = { x,y }; }
-	
+
 	void MakeHitParticle(glm::vec2 pos);
-	bool SetTarget();
 protected:
+	bool SetTarget();
+
 	glm::vec2 distance = { 0.f,0.f };
 	float lastLength = 0.f;
 

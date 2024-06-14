@@ -20,7 +20,6 @@ void Physics::Update (float dt)
 {
     if (Instance::GetLevelManager()->GetGameState() != State::PAUSE)
     {
-        deltaTime = dt;
         velocity.x *= friction;
         velocity.y *= friction;
 
@@ -33,8 +32,8 @@ void Physics::Update (float dt)
             velocity.y = 0.f;
         }
 
-        Component::GetOwner()->SetXPosition(Component::GetOwner()->GetPosition().x + velocity.x);
-        Component::GetOwner()->SetYPosition(Component::GetOwner()->GetPosition().y + velocity.y);
+        Component::GetOwner()->SetXPosition(Component::GetOwner()->GetPosition().x + velocity.x * dt);
+        Component::GetOwner()->SetYPosition(Component::GetOwner()->GetPosition().y + velocity.y * dt);
 
         SetMinMax();
 #ifdef _DEBUG
@@ -50,7 +49,6 @@ void Physics::Update(float dt, glm::vec2& pos)
 {
     if (Instance::GetLevelManager()->GetGameState() != State::PAUSE)
     {
-        deltaTime = dt;
         velocity.x *= friction;
         velocity.y *= friction;
 
@@ -63,8 +61,8 @@ void Physics::Update(float dt, glm::vec2& pos)
             velocity.y = 0.f;
         }
 
-        pos.x += velocity.x;
-        pos.y += velocity.y;
+        pos.x += velocity.x * dt;
+        pos.y += velocity.y * dt;
     }
 }
 
@@ -136,39 +134,6 @@ bool Physics::CheckCollision(Object& obj)
     }
 
     return true; 
-}
-
-glm::vec2 Physics::PointPlusVector(glm::vec2 point, glm::vec2 vector)
-{
-    glm::vec2 result;
-    result.x = point.x + vector.x;
-    result.y = point.y + vector.y;
-    return result;
-}
-
-glm::vec2 Physics::VectorPlusVector(glm::vec2 v0, glm::vec2 v1)
-{
-    glm::vec2 result;
-    result.x = v0.x + v1.x;
-    result.y = v0.y + v1.y;
-    return result;
-}
-
-glm::vec2 Physics::VectorNormalize(glm::vec2 v)
-{
-    glm::vec2 result;
-    float l = VectorLength(v);
-
-    result.x =v.x / l;
-    result.y =v.y / l;
-
-    return result;
-}
-
-float Physics::VectorLength(glm::vec2 v)
-{
-    float l = sqrtf(v.x * v.x + v.y * v.y);
-    return l;
 }
 
 glm::vec2 Physics::RotatePoint(AABB aabb_, const glm::vec2& point, float angle)

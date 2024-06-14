@@ -79,9 +79,6 @@ void EnemyAttack::Update(float dt)
 						case AttackType::TOWARD_PLAYER_NWAY:
 							TowardPlayerNWay(attack);
 							break;
-						case AttackType::NWAY:
-							NWay(attack);
-							break;
 						case AttackType::MISSILE:
 							Missile(attack);
 							break;
@@ -163,10 +160,6 @@ void EnemyAttack::TowardPlayerNWay(Attack& attack)
 				tempSpeed.x, tempSpeed.y, 8.f, 8.f, DrawType::RECTANGLE, "EnemyBullet");
 		}
 	}
-}
-
-void EnemyAttack::NWay(Attack& /*attack*/)
-{
 }
 
 void EnemyAttack::Missile(Attack& attack)

@@ -48,6 +48,7 @@
     <ClCompile Include="Game\Level\Stage1.cpp" />
     <ClCompile Include="Game\Main.cpp" />
     <ClCompile Include="Game\MapEditor.cpp" />
+    <ClCompile Include="Game\Object\Barrier.cpp" />
     <ClCompile Include="Game\Object\Bullet.cpp" />
     <ClCompile Include="Game\Object\Enemy.cpp" />
     <ClCompile Include="Game\Object\EnemyBigA.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Game\Level\Shop.hpp" />
     <ClInclude Include="Game\Level\Stage1.hpp" />
     <ClInclude Include="Game\MapEditor.hpp" />
+    <ClInclude Include="Game\Object\Barrier.hpp" />
     <ClInclude Include="Game\Object\Bullet.hpp" />
     <ClInclude Include="Game\Object\Enemy.hpp" />
     <ClInclude Include="Game\Object\EnemyBigA.hpp" />

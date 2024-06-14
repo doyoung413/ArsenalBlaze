@@ -23,8 +23,6 @@ private:
 	CameraManager* cameraManager = nullptr;
 	BackgroundManager* backgroundManager = nullptr;
 	SoundManager* soundManager = nullptr;
-
-
 #ifdef _DEBUG
 	MapEditor mapEditor;
 #endif

@@ -33,8 +33,8 @@ void Shop::Update(float dt)
 		EquipmentShop();
 		break;
 	}
-	text.DrawTextWithColor("MONEY " + std::to_string(gameManager->GetMoney()), 128.f, -224.f, 0.f, 1.0f, {1.f, 1.f, 1.f, 1.f});
-	
+	text.DrawTextWithColor("MONEY " + std::to_string(gameManager->GetMoney()), 128.f, -224.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+
 	Input();
 	if (isWarningOn == true)
 	{
@@ -229,7 +229,7 @@ void Shop::WeaponShop()
 	switch (selectionIndex)
 	{
 	case 0:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, {1.f,0.f,0.f,1.f});
+		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
 		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
@@ -384,44 +384,26 @@ void Shop::WeaponUpgrade()
 	switch (selectionIndex)
 	{
 	case 0:
-		if (Buy(100))
+		if (gameManager->GetWeaponPower().laser < 1)
 		{
-			if (gameManager->GetWeaponPower().laser < 1)
+			if (Buy(100))
 			{
-				gameManager->SetMoney(gameManager->GetMoney() - 100);
 				gameManager->SetWeaponPower(PlayerWeapon::LASER, 1);
-			}
-			else 
-			{
-
 			}
 		}
 		break;
 	case 1:
-		if (Buy(100))
+		if (gameManager->GetWeaponPower().homing < 1)
 		{
-			if (gameManager->GetWeaponPower().homing < 1)
+			if (Buy(100))
 			{
-				gameManager->SetMoney(gameManager->GetMoney() - 100);
 				gameManager->SetWeaponPower(PlayerWeapon::HOMING, 1);
 			}
-			else
-			{
-
-			}
 		}
-		break;
+			break;
 	case 2:
-		if (Buy(100))
-		{
-
-		}
 		break;
 	case 3:
-		if (Buy(100))
-		{
-
-		}
 		break;
 	case 4:
 		objectManager->DestroyAllObjects();
@@ -429,82 +411,60 @@ void Shop::WeaponUpgrade()
 		selectionIndex = 0;
 		shopState = ShopState::MAIN;
 		break;
-	}
-}
-
-void Shop::EquipmentUpgrade()
-{
-	switch (selectionIndex)
-	{
-	case 0:
-		if (Buy(100))
-		{
-			gameManager->SetMoney(gameManager->GetMoney() - 100);
-			gameManager->SetMaxHp(gameManager->GetMaxHp() + 10);
-			gameManager->AddHp(10);
 		}
-		break;
-	case 1:
-		if (Buy(100))
+	}
+
+	void Shop::EquipmentUpgrade()
+	{
+		switch (selectionIndex)
 		{
-			if (gameManager->GetIsBarrier() != true)
+		case 0:
+			if (Buy(200))
 			{
-				gameManager->SetMoney(gameManager->GetMoney() - 100); 
-				gameManager->SetIsBarrier(true);
+				gameManager->SetMaxHp(gameManager->GetMaxHp() + 10);
+				gameManager->AddHp(10);
 			}
-			else
+			break;
+		case 1:
+			if (Buy(500))
 			{
+				if (gameManager->GetIsBarrier() != true)
+				{
+					gameManager->SetIsBarrier(true);
+				}
+				else
+				{
 
+				}
 			}
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			selectionIndex = 0;
+			shopState = ShopState::MAIN;
+			break;
 		}
-		break;
-	case 2:
-		if (Buy(100))
-		{
-
-		}
-		break;
-	case 3:
-		if (Buy(100))
-		{
-
-		}
-		break;
-	case 4:
-		if (Buy(100))
-		{
-
-		}
-		break;
-	case 5:
-		if (Buy(100))
-		{
-
-		}
-		break;
-	case 6:
-		if (Buy(100))
-		{
-
-		}
-		break;
-	case 7:
-		selectionIndex = 0;
-		shopState = ShopState::MAIN;
-		break;
 	}
-}
 
-bool Shop::Buy(int cost)
-{
-	if (gameManager->GetMoney() >= cost)
+	bool Shop::Buy(int cost)
 	{
-		gameManager->SetMoney(gameManager->GetMoney() - cost);
-		return true;
+		if (gameManager->GetMoney() >= cost)
+		{
+			gameManager->SetMoney(gameManager->GetMoney() - cost);
+			return true;
+		}
+		else
+		{
+			isWarningOn = true;
+			return false;
+		}
 	}
-	else
-	{
-		isWarningOn = true;
-		return false;
-	}
-}

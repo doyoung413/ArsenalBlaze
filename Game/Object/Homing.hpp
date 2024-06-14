@@ -12,15 +12,15 @@ public:
 
 	void Init() override;
 	void Update(float dt) override;
-	void SetTarget();
-	bool IsTargetNULL();
-
-	bool IsSerach(Object* target_);
 
 	void SetDamage(float amount) { damage = amount;}
 	float GetDamage() {return damage;}
 	
 protected:
+	void SetTarget();
+	bool IsTargetNULL();
+	bool IsSerach(Object* target_);
+
 	float damage = 0;
 
 	float searchRadius = 200.f; 

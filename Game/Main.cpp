@@ -21,9 +21,9 @@ int main()
 	Instance::GetSoundManager()->Initialize(8);
 
 	Instance::GetSpriteManager()->SetBackGroundColor({ 0.f,0.f,0.f,1.f });
-	Instance::GetLevelManager()->AddLevel(new Shop());
 	Instance::GetLevelManager()->AddLevel(new Stage1());
 	Instance::GetLevelManager()->AddLevel(new Option());
+	Instance::GetLevelManager()->AddLevel(new Shop());
 
 	FileManager::LoadSetting("../Setting.ini");
 	application.Update();

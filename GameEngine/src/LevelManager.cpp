@@ -6,24 +6,24 @@
 #include "LevelManager.hpp"
 #include "Instance.hpp"
 
-LevellManager::~LevellManager()
+LevelManager::~LevelManager()
 {
 	End();
 }
 
-void LevellManager::Init()
+void LevelManager::Init()
 {
 	levelList.at(static_cast<int>(currentLevel))->Init();
 }
 
-void LevellManager::Init(LevelType currentLevel_)
+void LevelManager::Init(LevelType currentLevel_)
 {
 	currentLevel = currentLevel_;
 	Init();
 	state = State::UPDATE;
 }
 
-void LevellManager::Update(float dt)
+void LevelManager::Update(float dt)
 {
 	switch (state)
 	{
@@ -78,7 +78,7 @@ void LevellManager::Update(float dt)
 	}
 }
 
-void LevellManager::End()
+void LevelManager::End()
 {
 	for (auto& lev : levelList)
 	{
@@ -87,18 +87,18 @@ void LevellManager::End()
 	levelList.clear();
 }
 
-void LevellManager::AddLevel(Level* level)
+void LevelManager::AddLevel(Level* level)
 {
 	levelList.push_back(level);
 }
 
-void LevellManager::ChangeLevel(LevelType changeLV)
+void LevelManager::ChangeLevel(LevelType changeLV)
 {
 	changeLevel = changeLV;
 	state = State::CHANGE;
 }
 
-void LevellManager::RestartLevel()
+void LevelManager::RestartLevel()
 {
 	state = State::RESTART;
 }

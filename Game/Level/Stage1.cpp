@@ -1,8 +1,7 @@
 #include "Stage1.hpp"
 
 #include "FileManager.hpp"
-#include "Object/Player.hpp"
-#include "Object/Item.hpp"
+#include "Component/PlayerComponent.hpp"
 
 void Stage1::Init()
 {
@@ -14,15 +13,16 @@ void Stage1::Init()
 	backgroundManager = Instance::GetBackgroundManager();
 	soundManager = Instance::GetSoundManager();
 	cameraManager->SetZoom(0.9f);
-	//objectManager->AddObject<Player>(0.f, -128.f, 0.f, 0.f, 32.f, 32.f, DrawType::RECTANGLE, "Player", ObjectType::PLAYER);
 
+	objectManager->FindObjectWithName("Player")->GetComponent<PlayerComponent>()->Init();
 #ifdef _DEBUG
 	mapEditor.Init();
 #endif
 }
 
-void Stage1::Update(float /*dt*/)
+void Stage1::Update(float dt)
 {
+	gameManager->DrawUI(dt);
 #ifdef _DEBUG
 	mapEditor.Update();
 #endif

@@ -25,11 +25,10 @@ struct Background
 	float depth = -1.f;
 	BackgroundType type = BackgroundType::NORMAL;
 
+	int towerHeight = 0;
 	bool isDeleteWhenOut = false;
 	bool isScrolled = true;
 	size_t towerFloor = 0;
-
-	int towerHeight = 0;
 
 	Animation backgroundAnimation;
 };

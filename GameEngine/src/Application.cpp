@@ -31,8 +31,6 @@ void Application::Init(const char* title, int windowWidth, int windowHeight, boo
 	spriteManager.InitRenderer("Assets/shader.vert", "Assets/shader.frag");
 	cameraManager.Init({ window.GetWindowSize().x, window.GetWindowSize().y });
 
-	gameManager.Init();
-
 	Instance::GetInstance().SetLevelManager(&levelManager);
 	Instance::GetInstance().SetCameraManager(&cameraManager);
 	Instance::GetInstance().SetSpriteManager(&spriteManager);
@@ -45,6 +43,7 @@ void Application::Init(const char* title, int windowWidth, int windowHeight, boo
 
 	Instance::GetInstance().SetGameManager(&gameManager);
 
+	gameManager.Init();
 	timer.Init(frameRate);
 }
 

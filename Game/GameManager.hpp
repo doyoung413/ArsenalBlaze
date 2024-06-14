@@ -1,5 +1,7 @@
 #pragma once
 #include "InputKeys.hpp"
+#include "Text/Text.hpp"
+
 #include "glm.hpp"
 
 enum class GameMode
@@ -63,6 +65,7 @@ public:
 	~GameManager() {};
 
 	void Init();
+	void DrawUI(float dt);
 
 	void SetScrollSpeed(glm::vec2 amount) { ScrollSpeed = amount; }
 	glm::vec2 GetScrollSpeed() { return ScrollSpeed; }
@@ -85,6 +88,8 @@ public:
 	void SetWeaponPower(PlayerWeapon weapon, int powerLevel);
 	WeaponPower GetWeaponPower() { return playerState.weaponPower; }
 
+	void SwitchWeapon();
+
 	void SetIsBarrier(bool state) { playerState.isBarrier = state; }
 	bool GetIsBarrier() { return playerState.isBarrier; }
 
@@ -93,12 +98,25 @@ public:
 
 	KeySet& GetKeySetting() { return set; }
 private:
+	void DrawSubWeaponState(float dt);
+
 	int score = 0;
 
+	glm::vec2 subWeapon1Pos = { 0.f,0.f };
+	glm::vec2 subWeapon2Pos = { 0.f,0.f };
+
+	glm::vec2 viewSize = { 0.f,0.f };
 	glm::vec2 ScrollSpeed = { 0.f, 0.f };
+
+	glm::vec2 maxHpBarSize = { 232.f, 32.f };
+	glm::vec2 hpBarSize = { 232.f, 32.f };
+
 	GameMode gameMode = GameMode::RUNNING;
+
 	bool isPlayerCanControl = true;
+	bool isPlayerCanSwitchWeapon = true;
 
 	PlayerState playerState;
 	KeySet set;
+	Text text;
 };

@@ -28,7 +28,7 @@ public:
     static CameraManager* GetCameraManager() { return GetInstance().cameraManager; }
     static InputManager* GetInputManager() { return GetInstance().inputManager; }
     static ObjectManager* GetObjectManager() { return GetInstance().objectManager; }
-    static LevellManager* GetLevelManager() { return GetInstance().levelManager; }
+    static LevelManager* GetLevelManager() { return GetInstance().levelManager; }
     static ParticleManager* GetParticleManager() { return GetInstance().particleManager; }
     static SoundManager* GetSoundManager() { return GetInstance().soundManager; }
     static BackgroundManager* GetBackgroundManager() { return GetInstance().backgroundManager; }
@@ -39,7 +39,7 @@ public:
     void SetCameraManager(CameraManager* manager) { cameraManager = manager; }
     void SetInputManager(InputManager* manager) { inputManager = manager; }
     void SetObjectManager(ObjectManager* manager) { objectManager = manager; }
-    void SetLevelManager(LevellManager* manager) { levelManager = manager; }
+    void SetLevelManager(LevelManager* manager) { levelManager = manager; }
     void SetParticleManager(ParticleManager* manager) { particleManager = manager; }
     void SetSoundManagerManager(SoundManager * manager) { soundManager = manager; }
     void SetBackgroundManager(BackgroundManager* manager) { backgroundManager = manager; }
@@ -50,7 +50,7 @@ private:
     CameraManager* cameraManager = nullptr;
     InputManager* inputManager = nullptr;
     ObjectManager* objectManager = nullptr;
-    LevellManager* levelManager = nullptr;
+    LevelManager* levelManager = nullptr;
     ParticleManager* particleManager = nullptr;
     BackgroundManager* backgroundManager = nullptr;
     SoundManager* soundManager = nullptr;

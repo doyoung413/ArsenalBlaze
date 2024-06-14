@@ -23,8 +23,8 @@ public:
 	void Restart() override;
 	void End() override;
 
-	void Input();
 private:
+	void Input();
 	void ShopMain();
 	void WeaponShop();
 	void EquipmentShop();

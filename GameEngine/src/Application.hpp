@@ -22,7 +22,7 @@ private:
     SpriteManager spriteManager;
     CameraManager cameraManager;
     ObjectManager objectManager;
-    LevellManager levelManager;
+    LevelManager levelManager;
     InputManager inputManager;
     ParticleManager particleManager;
     BackgroundManager backgroundManager;

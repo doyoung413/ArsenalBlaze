@@ -8,7 +8,6 @@ enum AttackType
     NORMALSHOT,
     TOWARD_PLAYER,
     TOWARD_PLAYER_NWAY,
-    NWAY,
     ANGLE,
     SPREAD360,
     TOWARD_PLAYER_SPREAD360,
@@ -63,14 +62,7 @@ public:
     void Update(float dt) override;
     void End() override {};
 
-    void Normal(Attack& attack);
-    void TowardPlayer(Attack& attack);
-    void TowardPlayerNWay(Attack& attack);
-    void NWay(Attack& attack);
-    void Missile(Attack& attack);
-    void Angle(Attack& attack);
-    void Spread360(Attack& attack);
-    void TowardPlayerSpread360(Attack& attack);
+
 
     void SetIsCanAttack(bool state) { isCanAttack = state; }
 
@@ -87,7 +79,15 @@ public:
     }
 
     void ResetAttack();
-private:
+private:    
+    void Normal(Attack& attack);
+    void TowardPlayer(Attack& attack);
+    void TowardPlayerNWay(Attack& attack);
+    void Missile(Attack& attack);
+    void Angle(Attack& attack);
+    void Spread360(Attack& attack);
+    void TowardPlayerSpread360(Attack& attack);
+
     bool isCanAttack = true;
     std::vector<Attack> attackList;
 };

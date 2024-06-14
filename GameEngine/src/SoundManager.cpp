@@ -233,12 +233,12 @@ void SoundManager::VolumeDown(int channelIndex)
 
 void SoundManager::SetVolume(int channelIndex, float volume)
 {
-	if (channels[channelIndex].channel != nullptr)
+	//if (channels[channelIndex].channel != nullptr)
 	{
 		result = channels[channelIndex].channel->setVolume(volume);
 		ErrorCheck(result);
 
-		channels[channelIndex].soundVolume = volume;
+		channels[channelIndex].soundVolume = std::clamp(volume, 0.f, 1.f);
 	}
 }
 

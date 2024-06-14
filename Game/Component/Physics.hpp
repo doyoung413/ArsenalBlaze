@@ -42,12 +42,6 @@ public:
 
 	bool CheckCollision(Object& obj);
 
-	glm::vec2 PointPlusVector(glm::vec2 point, glm::vec2 vector);
-	glm::vec2 VectorPlusVector(glm::vec2 v0, glm::vec2 v1);
-
-	glm::vec2 VectorNormalize(glm::vec2 v);
-	float VectorLength(glm::vec2 v);
-
 	glm::vec2 GetVelocity() {return velocity;}
 	AABB GetAABB() { return aabb; }
 	void SetCollisionBoxPosition(float x, float y) { aabb.collisionBoxPosition = glm::vec2{ x, y }; }
@@ -68,7 +62,6 @@ private:
 
 	float friction = 0.9f;
 	float gravity = 0.f;
-	float deltaTime = 0.f;
 
 	AABB aabb;
 

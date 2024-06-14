@@ -16,16 +16,15 @@ public:
 	void Input();
 
 private:
+	void MainOptionMenu();
 	void KeyChanging(int index_, float dt);
-	void SoundTestMod() {};
 
 	Text text;
 	glm::vec2 textCursor = { 0.f,0.f };
 	int currentSoundChannel = 0;
 
 	int index = 0;
-	int bgmIndex = 0;
-	int seIndex = 0;
+	int soundIndex = 0;
 
 	float changeDelay = 0.f;
 	bool isKeySetting = false;

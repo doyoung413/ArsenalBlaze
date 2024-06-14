@@ -22,7 +22,6 @@ public:
 	float GetDamage() {return damage;}
 	
 	void MakeHitParticle() {};
-
 protected:
 	float damage = 0.5f;
 

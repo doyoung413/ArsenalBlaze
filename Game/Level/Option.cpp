@@ -3,6 +3,113 @@
 
 #include <iostream>
 
+void Option::MainOptionMenu()
+{
+	switch (index)
+	{
+	case 0:
+		text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+
+		if (Instance::GetWindow()->IsFullscreen() == true)
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		else
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		{
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		break;
+	case 1:
+		text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
+
+		if (Instance::GetWindow()->IsFullscreen() == true)
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+		}
+		else
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		{
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		break;
+	case 2:
+		text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
+
+		if (Instance::GetWindow()->IsFullscreen() == true)
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		else
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+		{
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		break;
+	case 3:
+		text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
+
+		if (Instance::GetWindow()->IsFullscreen() == true)
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		else
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		{
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		break;
+	case 4:
+		text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
+
+		if (Instance::GetWindow()->IsFullscreen() == true)
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		else
+		{
+			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		{
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
+
+		}
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+
+		break;
+	}
+}
+
 void Option::KeyChanging(int index_, float dt)
 {
 	if (isKeySetting == true && isSelected == false)
@@ -17,6 +124,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 1:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -26,6 +134,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 2:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -35,6 +144,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 3:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -44,6 +154,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 4:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -53,6 +164,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 5:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -62,6 +174,7 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 6:
 			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
@@ -71,11 +184,21 @@ void Option::KeyChanging(int index_, float dt)
 			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			break;
+		case 7:
+			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f);
+			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 			break;
 		}
 
-
-		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nPRESS R TO RESET KEY SET", -176.f, 208.f, 0.f, 1.0f, 1.f);
+		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\nPRESS R TO RESET KEY SET", -176.f, 208.f, 0.f, 1.0f, 1.f);
 		if (inputManager->IsKeyPressOnce(KEYBOARDKEYS::R))
 		{
 			gameManager->GetKeySetting().UP = KEYBOARDKEYS::UP;
@@ -183,6 +306,10 @@ void Option::KeyChanging(int index_, float dt)
 				}
 			}
 			break;
+		case 7:
+			index = 0;
+			isKeySetting = false;
+			break;
 		}
 	}
 }
@@ -191,22 +318,21 @@ void Option::Input()
 {
 	if (isKeySetting == false)
 	{
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_UP))
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
 		{
 			if (index > 0)
 			{
 				index--;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_DOWN))
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
 		{
-			if (index < 6)
+			if (index < 4)
 			{
 				index++;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_KEY1) ||
-			inputManager->IsKeyPressOnce(gameManager->GetKeySetting().START) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_START))
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
 		{
 			switch (index)
 			{
@@ -224,28 +350,65 @@ void Option::Input()
 				break;
 			}
 		}
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().LEFT))
+		{
+			switch (index)
+			{
+			case 2:
+				soundManager->VolumeDown(1);
+				break;
+			case 3:
+				if (soundIndex > 0 && soundManager->GetAmontOfSounds() != 0)
+				{
+					--soundIndex;
+				}
+				else
+				{
+					soundIndex = soundManager->GetAmontOfSounds() - 1;
+				}
+				break;
+			}
+		}
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().RIGHT))
+		{
+			switch (index)
+			{
+			case 2:
+				soundManager->VolumeUp(1);
+				break;
+			case 3:
+				if (soundIndex < soundManager->GetAmontOfSounds() - 1 && soundManager->GetAmontOfSounds() != 0)
+				{
+					soundIndex++;
+				}
+				else
+				{
+					soundIndex = 0;
+				}
+				break;
+			}
+		}
 	}
 	else
 	{
 		if (isSelected == false)
 		{
-			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_UP))
+			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
 			{
 				if (index > 0)
 				{
 					index--;
 				}
 			}
-			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_DOWN))
+			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
 			{
-				if (index < 6)
+				if (index < 7)
 				{
 					index++;
 				}
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_KEY1) ||
-			inputManager->IsKeyPressOnce(gameManager->GetKeySetting().START) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_START))
+		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
 		{
 			if (isSelected == false)
 			{
@@ -271,181 +434,11 @@ void Option::Update(float dt)
 {
 	{
 		text.DrawTextWithColor("OPTION", -48.f, 208.f, 0.f, 1.0f, 1.f);
-		
+
 		KeyChanging(index, dt);
 		if (isKeySetting == false)
 		{
-			switch (index)
-			{
-			case 0:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 1:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 2:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 3:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 4:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 5:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				break;
-			case 6:
-				text.DrawTextWithColor("\n\n\nKEY CONFIGURATION", -144.f, 208.f, 0.f, 1.0f);
-
-				if (Instance::GetWindow()->IsFullscreen() == true)
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : ON", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-				else
-				{
-					text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
-				}
-
-				text.DrawTextWithColor("\n\n\n\n\nBGM VOLUME : " + std::to_string(soundManager->GetChannelVolume(0)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-				text.DrawTextWithColor("\n\n\n\n\n\nSE VOLUME : " + std::to_string(soundManager->GetChannelVolume(1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				{
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\nBGM " + std::to_string(bgmIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-					text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSE " + std::to_string(seIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
-
-				}
-				text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRETURN TO TITLE", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-
-				break;
-			}
+			MainOptionMenu();
 		}
 
 		else if (isSelected == true && isKeySetting == false)
@@ -474,7 +467,7 @@ void Option::Restart()
 void Option::End()
 {
 	gameManager = nullptr;
-	spriteManager = nullptr; 
+	spriteManager = nullptr;
 	inputManager = nullptr;
 	soundManager = nullptr;
 }

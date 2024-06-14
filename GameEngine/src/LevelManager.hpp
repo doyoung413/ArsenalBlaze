@@ -21,11 +21,11 @@ enum class State
 	SHUTDOWN,
 };
 
-class LevellManager
+class LevelManager
 {
 public:
-	LevellManager() = default;
-	~LevellManager();
+	LevelManager() = default;
+	~LevelManager();
 
 	void Init();
 	void Init(LevelType currentLevel_);

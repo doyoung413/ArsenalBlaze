@@ -12,7 +12,7 @@ class PlayerComponent : public Component
 {
 public:
 	PlayerComponent();
-	~PlayerComponent() override {};
+	~PlayerComponent() override;
 
 	void Init() override;
 	void Update(float dt) override;
@@ -28,6 +28,9 @@ public:
 private:
 	void Input(float dt);
 	void Delay(float dt);
+
+	void SpawnBarrier();
+	void ClearBarrier();
 
 	glm::vec2 windowSize = { 0.f,0.f };
 	glm::vec2 cameraCenter = { 0.f,0.f };
@@ -46,4 +49,6 @@ private:
 
 	bool isInvincible = false;
 	bool isHit = false;
+
+	std::vector<Object*> barriers;
 };

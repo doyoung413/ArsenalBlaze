@@ -3,7 +3,7 @@
 
 enum class ItemType
 {
-	N, H, L, MONEY
+	N, H, L
 };
 
 class Item : public Object

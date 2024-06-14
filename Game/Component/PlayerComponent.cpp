@@ -7,14 +7,27 @@
 #include "Object/Bullet.hpp"
 #include "Object/Homing.hpp"
 #include "Object/Laser.hpp"
+#include "Object/Barrier.hpp"
 #include "Instance.hpp"
 
-PlayerComponent::PlayerComponent() : Component(ComponentTypes::PLAYERCOMP) 
+PlayerComponent::PlayerComponent() : Component(ComponentTypes::PLAYERCOMP)
 {
+}
+
+PlayerComponent::~PlayerComponent()
+{
+	if (Instance::GetGameManager()->GetIsBarrier() == true)
+	{
+		ClearBarrier();
+	}
 }
 
 void PlayerComponent::Init()
 {
+	if (Instance::GetGameManager()->GetIsBarrier() == true && Instance::GetGameManager()->GetIsPlayerCanControl() == true)
+	{
+		SpawnBarrier();
+	}
 }
 
 void PlayerComponent::Update(float dt)
@@ -24,6 +37,17 @@ void PlayerComponent::Update(float dt)
 
 	Input(dt);
 	Delay(dt);
+
+	if (Instance::GetGameManager()->GetIsBarrier() == true)
+	{
+		for (auto barrier : barriers)
+		{
+			if (barrier != nullptr)
+			{
+				barrier->Update(dt);
+			}
+		}
+	}
 
 	if (isInvincible == true)
 	{
@@ -42,28 +66,30 @@ void PlayerComponent::Input(float dt)
 {
 	if (Instance::GetLevelManager()->GetGameState() != State::PAUSE && Instance::GetGameManager()->GetIsPlayerCanControl() == true)
 	{
-		if (isHit == false)
+		if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().RIGHT))
 		{
-			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().RIGHT))
-			{
-				GetOwner()->SetXPosition(GetOwner()->GetPosition().x + playerMoveSpeed * dt);
-			}
-			else if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().LEFT))
-			{
-				GetOwner()->SetXPosition(GetOwner()->GetPosition().x - playerMoveSpeed * dt);
-			}
-			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().UP))
-			{
-				GetOwner()->SetYPosition(GetOwner()->GetPosition().y + playerMoveSpeed * dt);
-			}
-			else if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().DOWN))
-			{
-				GetOwner()->SetYPosition(GetOwner()->GetPosition().y - playerMoveSpeed * dt);
-			}
-			if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().KEY1))
-			{
-				Attack();
-			}
+			GetOwner()->SetXPosition(GetOwner()->GetPosition().x + playerMoveSpeed * dt);
+		}
+		if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().LEFT))
+		{
+			GetOwner()->SetXPosition(GetOwner()->GetPosition().x - playerMoveSpeed * dt);
+		}
+		if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().UP))
+		{
+			GetOwner()->SetYPosition(GetOwner()->GetPosition().y + playerMoveSpeed * dt);
+		}
+		if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().DOWN))
+		{
+			GetOwner()->SetYPosition(GetOwner()->GetPosition().y - playerMoveSpeed * dt);
+		}
+		if (Instance::GetInputManager()->IsKeyPressed(Instance::GetGameManager()->GetKeySetting().KEY1))
+		{
+			Attack();
+			SubAttack();
+		}
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY2))
+		{
+			Instance::GetGameManager()->SwitchWeapon();
 		}
 	}
 }
@@ -166,7 +192,7 @@ void PlayerComponent::Delay(float dt)
 {
 	if (isShotReady == false)
 	{
-		shotDelay +=  dt;
+		shotDelay += dt;
 		if (shotDelay >= maxShotDelay)
 		{
 			shotDelay = 0.f;
@@ -182,4 +208,34 @@ void PlayerComponent::Delay(float dt)
 			isSubShotReady = true;
 		}
 	}
+}
+
+void PlayerComponent::SpawnBarrier()
+{
+	Instance::GetObjectManager()->AddObject<Barrier>(-80.f, 0.f, 0.f, 0.f, 16.f, 16.f, DrawType::RECTANGLE, "BarrierL", ObjectType::BARRIER);
+	static_cast<Barrier*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())
+		->Init(GetOwner(), -0.1f);
+	Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get()->SetColor({ 1.f,0.5f,0.f,1.f });
+	barriers.push_back(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get());
+	Instance::GetObjectManager()->GetLastObject()->SetDepth(0.48f);
+
+	Instance::GetObjectManager()->AddObject<Barrier>(80.f, 0.f, 0.f, 0.f, 16.f, 16.f, DrawType::RECTANGLE, "BarrierR", ObjectType::BARRIER);
+	static_cast<Barrier*>(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get())
+		->Init(GetOwner(), -0.1f);
+	Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get()->SetColor({ 1.f,0.5f,0.f,1.f });
+	barriers.push_back(Instance::GetObjectManager()->GetObjectMap().at(Instance::GetObjectManager()->GetLastObjectID()).get());
+	Instance::GetObjectManager()->GetLastObject()->SetDepth(0.48f);
+}
+
+void PlayerComponent::ClearBarrier()
+{
+	for (auto barrier : barriers)
+	{
+		if (barrier != nullptr)
+		{
+			Instance::GetObjectManager()->Destroy(barrier->GetId());
+			barrier = nullptr;
+		}
+	}
+	barriers.clear();
 }
