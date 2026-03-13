@@ -18,7 +18,7 @@ enum class PlayerWeapon
 	HOMING,
 };
 
-struct WeaponPower
+struct WeaponLevel
 {
 	int normal = 0;
 	int laser = 0;
@@ -34,7 +34,7 @@ struct PlayerState
 	PlayerWeapon weapons[2] = { PlayerWeapon::NORMAL, PlayerWeapon::NORMAL };
 	int currentWeaponIndex = 0;
 	bool isBarrier = false;
-	WeaponPower weaponPower;
+	WeaponLevel weaponLevel;
 };
 
 struct KeySet
@@ -65,6 +65,7 @@ public:
 	~GameManager() {};
 
 	void Init();
+	void Update(float dt);
 	void DrawUI(float dt);
 
 	void SetScrollSpeed(glm::vec2 amount) { ScrollSpeed = amount; }
@@ -85,8 +86,8 @@ public:
 
 	PlayerWeapon GetPlayerWeapon() { return playerState.weapons[playerState.currentWeaponIndex]; }
 	void SetPlayerWeapon(PlayerWeapon weapon_) { playerState.weapons[playerState.currentWeaponIndex] = weapon_; }
-	void SetWeaponPower(PlayerWeapon weapon, int powerLevel);
-	WeaponPower GetWeaponPower() { return playerState.weaponPower; }
+	void SetWeaponLevel(PlayerWeapon weapon, int powerLevel);
+	WeaponLevel GetWeaponLevel() { return playerState.weaponLevel; }
 
 	void SwitchWeapon();
 
@@ -97,11 +98,13 @@ public:
 	bool GetIsPlayerCanControl() { return isPlayerCanControl; }
 
 	KeySet& GetKeySetting() { return set; }
+	void ResetKeySetting();
 private:
 	void DrawSubWeaponState(float dt);
 
 	int score = 0;
 
+	float overDelay = 0.f;
 	glm::vec2 subWeapon1Pos = { 0.f,0.f };
 	glm::vec2 subWeapon2Pos = { 0.f,0.f };
 

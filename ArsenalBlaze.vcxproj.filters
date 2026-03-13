@@ -102,9 +102,6 @@
     <ClCompile Include="Game\Level\Shop.cpp">
       <Filter>Game\Level</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Level\Stage1.cpp">
-      <Filter>Game\Level</Filter>
-    </ClCompile>
     <ClCompile Include="GameEngine\src\BackgroundManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
@@ -176,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="Game\Object\Barrier.cpp">
       <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\StageDemo.cpp">
+      <Filter>Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\Title.cpp">
+      <Filter>Game\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -263,9 +266,6 @@
     <ClInclude Include="Game\Level\Shop.hpp">
       <Filter>Game\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Level\Stage1.hpp">
-      <Filter>Game\Level</Filter>
-    </ClInclude>
     <ClInclude Include="GameEngine\src\SoundManager.hpp">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -343,6 +343,12 @@
     </ClInclude>
     <ClInclude Include="Game\Object\Barrier.hpp">
       <Filter>Game\Object\PlayerWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\StageDemo.hpp">
+      <Filter>Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\Title.hpp">
+      <Filter>Game\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

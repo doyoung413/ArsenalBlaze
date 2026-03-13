@@ -15,6 +15,7 @@ EnemyBullet::EnemyBullet(float positionX, float positionY, float speedX, float s
 {
 	AddComponent<Physics>();
 	GetComponent<Physics>()->Init({ width, height });
+	SetColor({ 1.f,0.f,0.f,1.f });
 }
 
 void EnemyBullet::Init()

@@ -4,7 +4,6 @@
 //Description: Source file for handling of the application
 /*-------------------------------------------------------*/
 #include "Application.hpp"
-#include "backends/imgui_impl_sdl2.h"
 
 #include <iostream>
 
@@ -52,8 +51,6 @@ void Application::Update()
 	SDL_Event event;
 	float deltaTime = 0.f;
 	int frameCount = 0;
-	std::chrono::system_clock::time_point lastTick;
-	std::chrono::system_clock::time_point fpsCalcTime;
 
 	while (levelManager.GetGameState() != State::SHUTDOWN)
 	{

@@ -29,9 +29,4 @@ private:
 	float changeDelay = 0.f;
 	bool isKeySetting = false;
 	bool isSelected = false;
-
-	SpriteManager* spriteManager = nullptr;
-	GameManager* gameManager = nullptr;
-	InputManager* inputManager = nullptr;
-	SoundManager* soundManager = nullptr;
 };

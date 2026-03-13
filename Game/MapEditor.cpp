@@ -118,12 +118,17 @@ void MapEditor::Init()
 	newObject->SetSpriteName("none");
 	newObject->SetDrawType(DrawType::RECTANGLE);
 	newObject->AddComponent<Physics>();
+
 }
 #endif
 
 #ifdef _DEBUG
 void MapEditor::Update()
 {
+	if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR)
+	{
+		Instance::GetLevelManager()->SetGameState(State::PAUSE);
+	}
 	Instance::GetSpriteManager()->DrawRectangleLine({ 0.f, 0.f, 0.f }, 0.f, { Instance::GetCameraManager()->GetViewSize().x / 2.f, Instance::GetCameraManager()->GetViewSize().y / 2.f, 0.f }, { 0.5f,1.f,0.5f,1.f });
 	if (Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::M))
 	{
@@ -138,13 +143,44 @@ void MapEditor::Update()
 			Instance::GetGameManager()->SetGameMode(GameMode::RUNNING);
 		}
 	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::W))
+	{
+		Instance::GetCameraManager()->MoveUp(2.f);
+	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::S))
+	{
+		Instance::GetCameraManager()->MoveUp(-2.f);
+	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::A))
+	{
+		Instance::GetCameraManager()->MoveRight(-2.f);
+	}
+	if (Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::D))
+	{
+		Instance::GetCameraManager()->MoveRight(2.f);
+	}
+	if (Instance::GetInputManager()->GetMouseWheel() != 0)
+	{
+		float currentZoom = Instance::GetCameraManager()->GetZoom();
+		currentZoom += Instance::GetInputManager()->GetMouseWheel() * 0.1f;
+		if (currentZoom < 0.1f) currentZoom = 0.1f;
+		if (currentZoom > 5.0f) currentZoom = 5.0f;
+		Instance::GetCameraManager()->SetZoom(currentZoom);
+	}
+
 	ImGui_ImplSDL2_ProcessEvent(&Instance::GetWindow()->GetEvent());
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
 	ImGui::NewFrame();
 
 	ImGui::Begin("Input");
-	ImGui::Text("X:%f Y:%f", Instance::GetInputManager()->GetMousePosition().x, Instance::GetInputManager()->GetMousePosition().y);
+	ImGui::Text("Mouse X:%f Y:%f", Instance::GetInputManager()->GetMousePosition().x, Instance::GetInputManager()->GetMousePosition().y);
+	ImGui::Text("CamCenter X:%f Y:%f", Instance::GetCameraManager()->GetCenter().x, Instance::GetCameraManager()->GetCenter().y);
+	ImGui::Text("CamPos X:%f Y:%f", Instance::GetCameraManager()->GetCameraPosition().x, Instance::GetCameraManager()->GetCameraPosition().y);
+	if (target != nullptr)
+	{
+		ImGui::Text("Target X:%f Y:%f", target->GetPosition().x, target->GetPosition().y);
+	}
 
 
 	if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR)
@@ -186,25 +222,36 @@ void MapEditor::ObjectList()
 	ImGui::BeginChild("Scrolling");
 	for (auto& obj : Instance::GetObjectManager()->GetObjectMap())
 	{
-		if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR)
+		if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR && !ImGui::GetIO().WantCaptureMouse)
 		{
 			if (isCollideWithPoint({ Instance::GetInputManager()->GetMousePosition().x, Instance::GetInputManager()->GetMousePosition().y }, obj.second.get())
 				&& Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::LEFT))
+			{
 				if (targetIsClicked == false && target == obj.second.get())
 				{
+					// Second click on same object: enable dragging
 					targetIsClicked = true;
 				}
 				else if (targetIsClicked == false && target != obj.second.get())
 				{
+					// First click on new object: select only (no drag)
+					editMode = EditorMode::OBJMODIFIER;
 					target = obj.second.get();
-					Instance::GetCameraManager()->TargetAt(target->GetPosition());
 				}
+			}
 		}
-		if (ImGui::Selectable(obj.second->GetName().c_str(), &obj.second))
+		std::string label = obj.second->GetName() + " (ID:" + std::to_string(obj.first) + ")##" + std::to_string(obj.first);
+		bool is_selected = (target == obj.second.get());
+		if (ImGui::Selectable(label.c_str(), is_selected))
 		{
 			editMode = EditorMode::OBJMODIFIER;
 			target = obj.second.get();
-			Instance::GetCameraManager()->TargetAt(target->GetPosition());
+			// Reset camera panning offset and zoom before centering on object
+			//glm::vec3 camPos = Instance::GetCameraManager()->GetCameraPosition();
+			//Instance::GetCameraManager()->MoveRight(-camPos.x);
+			//Instance::GetCameraManager()->MoveUp(-camPos.y);
+			//Instance::GetCameraManager()->SetZoom(1.f);
+			//Instance::GetCameraManager()->TargetAt(target->GetPosition());
 			targetIsClicked = true;
 		}
 	}
@@ -214,8 +261,26 @@ void MapEditor::ObjectList()
 	{
 		if (editMode == EditorMode::OBJMODIFIER)
 		{
-			ObjectModifier();
-			Instance::GetSpriteManager()->DrawRectangleLine(target->GetPosition(), 0.f, target->GetSize(), { 1.0f, 0.0f, 0.0f, 1.f }, 1.f);
+			// Validate that target still exists in the object map (it may have been destroyed)
+			bool targetStillExists = false;
+			for (auto& obj : Instance::GetObjectManager()->GetObjectMap())
+			{
+				if (obj.second.get() == target)
+				{
+					targetStillExists = true;
+					break;
+				}
+			}
+			if (targetStillExists)
+			{
+				ObjectModifier();
+				Instance::GetSpriteManager()->DrawRectangleLine(target->GetPosition(), 0.f, target->GetSize(), { 1.0f, 0.0f, 0.0f, 1.f }, 1.f);
+			}
+			else
+			{
+				target = nullptr;
+				targetIsClicked = false;
+			}
 		}
 		if (editMode == EditorMode::OBJCREATOR)
 		{
@@ -310,7 +375,7 @@ void MapEditor::ObjectCreator()
 		newObject->SetDepth(targetDepth);
 		break;
 	}
-	glm::vec2 newPosition = { Instance::GetInputManager()->GetMousePosition().x - std::fmod(Instance::GetInputManager()->GetMousePosition().x, targetBackground->size.x),  Instance::GetInputManager()->GetMousePosition().y - std::fmod(Instance::GetInputManager()->GetMousePosition().y, targetBackground->size.y) };
+	glm::vec2 newPosition = { std::floor(Instance::GetInputManager()->GetMousePosition().x / targetBackground->size.x) * targetBackground->size.x,  std::floor(Instance::GetInputManager()->GetMousePosition().y / targetBackground->size.y) * targetBackground->size.y };
 	newObject->SetXPosition(newPosition.x);
 	newObject->SetYPosition(newPosition.y);
 
@@ -344,9 +409,8 @@ void MapEditor::ObjectCreator()
 		}
 	}
 
-	if (mouseIsClickedWithoutObject == false && Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::MIDDLE))
+	if (Instance::GetInputManager()->IsMouseButtonPressOnce(MOUSEBUTTON::MIDDLE))
 	{
-		mouseIsClickedWithoutObject = true;
 		switch (newObject->GetObjectType())
 		{
 		case ObjectType::NONE:
@@ -400,10 +464,7 @@ void MapEditor::ObjectCreator()
 			break;
 		}
 	}
-	else if (mouseIsClickedWithoutObject == true && Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::MIDDLE) == false)
-	{
-		mouseIsClickedWithoutObject = false;
-	}
+
 
 	switch (newObject->GetDrawType())
 	{
@@ -493,7 +554,7 @@ void MapEditor::BackgroundCreator()
 	glm::vec2 newPosition = { 0.f, 0.f };
 	if (isPositionFree == false)
 	{
-		newPosition = { Instance::GetInputManager()->GetMousePosition().x - std::fmod(Instance::GetInputManager()->GetMousePosition().x, targetBackground->size.x),  Instance::GetInputManager()->GetMousePosition().y - std::fmod(Instance::GetInputManager()->GetMousePosition().y, targetBackground->size.y) };
+		newPosition = { std::floor(Instance::GetInputManager()->GetMousePosition().x / targetBackground->size.x) * targetBackground->size.x,  std::floor(Instance::GetInputManager()->GetMousePosition().y / targetBackground->size.y) * targetBackground->size.y };
 	}
 	else
 	{
@@ -543,9 +604,8 @@ void MapEditor::BackgroundCreator()
 		}
 	}
 
-	if (mouseIsClickedWithoutObject == false && (Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::MIDDLE) || Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::SPACE)))
+	if (Instance::GetInputManager()->IsMouseButtonPressOnce(MOUSEBUTTON::MIDDLE) || Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::SPACE))
 	{
-		mouseIsClickedWithoutObject = true;
 		if (isTiledScale == false)
 		{
 			Instance::GetBackgroundManager()->AddSaveBackgroundList(targetBackground->spriteName, backgroundGroup, targetBackground->type, targetBackground->position, targetBackground->size,
@@ -567,10 +627,7 @@ void MapEditor::BackgroundCreator()
 			}
 		}
 	}
-	else if (mouseIsClickedWithoutObject == true && (Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::MIDDLE) == false || Instance::GetInputManager()->IsKeyPressed(KEYBOARDKEYS::SPACE) == false))
-	{
-		mouseIsClickedWithoutObject = false;
-	}
+
 
 	if (Instance::GetSpriteManager()->GetSprite(targetBackground->spriteName)->isAnimated == true)
 	{
@@ -619,12 +676,14 @@ void MapEditor::MouseInputEvent()
 {
 	if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR)
 	{
-		if (target != nullptr && editMode == EditorMode::OBJMODIFIER)
+		if (target != nullptr && editMode == EditorMode::OBJMODIFIER && !ImGui::GetIO().WantCaptureMouse)
 		{
 			if (targetIsClicked == true && Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::LEFT))
 			{
-				target->SetXPosition(Instance::GetInputManager()->GetMousePosition().x);
-				target->SetYPosition(Instance::GetInputManager()->GetMousePosition().y);
+				float snapX = std::floor(Instance::GetInputManager()->GetMousePosition().x / targetBackground->size.x) * targetBackground->size.x;
+				float snapY = std::floor(Instance::GetInputManager()->GetMousePosition().y / targetBackground->size.y) * targetBackground->size.y;
+				target->SetXPosition(snapX);
+				target->SetYPosition(snapY);
 				target->Update(1.f);
 			}
 			else if (mouseIsClickedWithoutObject == false && targetIsClicked == false && Instance::GetInputManager()->IsMouseButtonPressed(MOUSEBUTTON::LEFT) && isCollideWithPoint({ Instance::GetInputManager()->GetMousePosition().x, Instance::GetInputManager()->GetMousePosition().y }, target) == false)
@@ -739,23 +798,31 @@ void MapEditor::BackgroundtTypeList(Background* target_)
 
 void MapEditor::SpriteList(Object* object)
 {
-	if (Instance::GetSpriteManager()->GetSpriteMap().at(object->GetSpriteName().c_str()).isAnimated == true)
+	std::string sprName = object->GetSpriteName();
+	// Guard: skip sprite display if sprite name is empty or not found in sprite map
+	if (sprName.empty() || Instance::GetSpriteManager()->GetSpriteMap().count(sprName) == 0)
 	{
-		ImGui::Image((void*)(intptr_t)Instance::GetSpriteManager()->GetSpriteMap().at(object->GetSpriteName().c_str()).texture.GetTexturehandle(),
-			ImVec2(128, 128), ImVec2(0.0f, 1.0f), ImVec2(1.0f / static_cast<float>(Instance::GetSpriteManager()->GetSpriteMap().at(object->GetSpriteName().c_str()).animation.GetFrameIndexX()), 0.0f));
+		ImGui::Text("No Sprite Assigned");
+	}
+	else if (Instance::GetSpriteManager()->GetSpriteMap().at(sprName.c_str()).isAnimated == true)
+	{
+		ImGui::Image((void*)(intptr_t)Instance::GetSpriteManager()->GetSpriteMap().at(sprName.c_str()).texture.GetTexturehandle(),
+			ImVec2(128, 128), ImVec2(0.0f, 1.0f), ImVec2(1.0f / static_cast<float>(Instance::GetSpriteManager()->GetSpriteMap().at(sprName.c_str()).animation.GetFrameIndexX()), 0.0f));
 	}
 	else
 	{
-		ImGui::Image((void*)(intptr_t)Instance::GetSpriteManager()->GetSpriteMap().at(object->GetSpriteName().c_str()).texture.GetTexturehandle(), ImVec2(128, 128)
+		ImGui::Image((void*)(intptr_t)Instance::GetSpriteManager()->GetSpriteMap().at(sprName.c_str()).texture.GetTexturehandle(), ImVec2(128, 128)
 			, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
 	}
-	if (ImGui::BeginCombo("SpriteList", object->GetSpriteName().c_str()))
+	const char* comboPreview = sprName.empty() ? "(none)" : sprName.c_str();
+	if (ImGui::BeginCombo("SpriteList", comboPreview))
 	{
 		for (auto& sprite : Instance::GetSpriteManager()->GetSpriteMap())
 		{
+			if (sprite.first.empty()) continue; // Skip empty keys
 			int index = 0;
-			const bool is_selected = sprite.first.c_str() == object->GetSpriteName().c_str();
-			if (ImGui::Selectable(sprite.first.c_str()))
+			const bool is_selected = sprite.first == object->GetSpriteName();
+			if (ImGui::Selectable(sprite.first.c_str(), is_selected))
 			{
 				object->SetSpriteName(sprite.first.c_str());
 				if (sprite.second.isAnimated == true)
@@ -866,17 +933,21 @@ void MapEditor::SpriteList(Background* back)
 
 void MapEditor::SaveLevelData()
 {
-	FileManager::SaveLevelData("Game/Level/LevelData/Level1.lvl");
+	FileManager::SaveLevelData("Game/Level/LevelData/LevelDemo.lvl");
 	switch (Instance::GetLevelManager()->GetCurrentLevel())
 	{
-	case LevelType::STAGE_1:
-		FileManager::SaveLevelData("Game/Level/LevelData/Level1.lvl");
+	case LevelType::STAGEDEMO:
+		FileManager::SaveLevelData("Game/Level/LevelData/LevelDemo.lvl");
 		break;
 	}
 }
 bool MapEditor::isCollideWithPoint(glm::vec2 point, Object* object)
 {
-	return !((object->GetPosition().x + object->GetSize().x) < point.x || point.x < (object->GetPosition().x - object->GetSize().x)
-		|| (object->GetPosition().y + object->GetSize().y) < point.y || point.y < (object->GetPosition().y - object->GetSize().y));
+	float zoom = Instance::GetCameraManager()->GetZoom();
+	float hw = object->GetSize().x / zoom;
+	float hh = object->GetSize().y / zoom;
+	
+	return !((object->GetPosition().x + hw) < point.x || point.x < (object->GetPosition().x - hw)
+		|| (object->GetPosition().y + hh) < point.y || point.y < (object->GetPosition().y - hh));
 }
 #endif

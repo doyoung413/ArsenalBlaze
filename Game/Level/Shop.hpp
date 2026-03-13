@@ -39,12 +39,6 @@ private:
 	float warningDelay = 0.f;
 	bool isWarningOn = false;
 
-	SpriteManager* spriteManager = nullptr;
-	GameManager* gameManager = nullptr;
-	ObjectManager* objectManager = nullptr;
-	SoundManager* soundManager = nullptr;
-	InputManager* inputManager = nullptr;
-
 	ShopState shopState = ShopState::MAIN;
 	Player* player = nullptr;
 };

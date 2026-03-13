@@ -51,4 +51,6 @@ private:
 	bool isHit = false;
 
 	std::vector<Object*> barriers;
+	Animation boostAnimation;
+	std::string boostName = "";
 };

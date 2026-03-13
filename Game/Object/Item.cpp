@@ -47,12 +47,15 @@ void Item::Update(float dt)
 	{
 	case 0:
 		currentItem = ItemType::N;
+		SetSpriteName("itemN");
 		break;
 	case 1:
 		currentItem = ItemType::H;
+		SetSpriteName("itemH");
 		break;
 	case 2:
 		currentItem = ItemType::L;
+		SetSpriteName("itemL");
 		break;
 	}
 

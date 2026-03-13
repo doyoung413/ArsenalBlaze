@@ -111,6 +111,10 @@ void FileManager::LoadSetting(const std::filesystem::path& filePath)
 		{
 			Instance::GetWindow()->ToggleFullScreen();
 		}
+
+		inStream >> value;
+		std::cout << value << std::endl;
+		Instance::GetSoundManager()->SetVolume(static_cast<float>(std::atof(value.c_str())));
 	}
 	inStream.close();
 }
@@ -138,6 +142,8 @@ void FileManager::SaveSetting(const std::filesystem::path& outFilePath)
 	{
 		saveLoad << "FULLSCREEN:OFF" << "\n";
 	}
+	saveLoad << Instance::GetSoundManager()->GetChannelVolume(0)<< "\n";
+	std::cout << Instance::GetSoundManager()->GetChannelVolume(0) << std::endl;
 	saveLoad.close();
 }
 

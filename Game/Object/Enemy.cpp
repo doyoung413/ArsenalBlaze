@@ -16,7 +16,7 @@ Enemy::Enemy(float positionX, float positionY, float speedX, float speedY, float
 	GetComponent<Physics>()->Init({ width, height });
 
 	SetDepth(0.49f);
-
+	SetColor(1.f);
 	viewSize = { static_cast<float>(Instance::GetCameraManager()->GetViewSize().x), static_cast<float>(Instance::GetCameraManager()->GetViewSize().y) };
 	cameraCenter = Instance::GetCameraManager()->GetCenter();
 }
@@ -28,6 +28,16 @@ void Enemy::Init()
 
 void Enemy::Update(float dt)
 {
+	// In editor mode, skip all gameplay logic (movement, destruction, death)
+	// and only draw the enemy so it stays visible for editing
+	// Also set isInCamera = false so subclass Update code (physics, etc.) is skipped
+	if (Instance::GetGameManager()->GetGameMode() == GameMode::EDITOR)
+	{
+		isInCamera = false;
+		Object::Draw(dt);
+		return;
+	}
+
 	Hit(dt);
 	if (isInCamera == true)
 	{
@@ -40,7 +50,7 @@ void Enemy::Update(float dt)
 	else if (isInCamera == false)
 	{
 		Object::Draw(dt);
-		position.y += Instance::GetGameManager()->GetScrollSpeed().y;
+		position.y += Instance::GetGameManager()->GetScrollSpeed().y * dt;
 		if (isEdgeOfCamera() == true)
 		{
 			isInCamera = true;
@@ -66,6 +76,7 @@ void Enemy::CollideObject(Object* obj)
 			{
 				SetIsHit(true);
 				SetHp(GetHp() - static_cast<Bullet*>(obj)->GetDamage());
+				Instance::GetGameManager()->AddScore(score);
 			}
 		}
 		break;

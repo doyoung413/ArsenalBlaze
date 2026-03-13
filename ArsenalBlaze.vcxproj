@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -45,7 +45,8 @@
     <ClCompile Include="Game\GameManager.cpp" />
     <ClCompile Include="Game\Level\Option.cpp" />
     <ClCompile Include="Game\Level\Shop.cpp" />
-    <ClCompile Include="Game\Level\Stage1.cpp" />
+    <ClCompile Include="Game\Level\StageDemo.cpp" />
+    <ClCompile Include="Game\Level\Title.cpp" />
     <ClCompile Include="Game\Main.cpp" />
     <ClCompile Include="Game\MapEditor.cpp" />
     <ClCompile Include="Game\Object\Barrier.cpp" />
@@ -102,7 +103,8 @@
     <ClInclude Include="Game\GameManager.hpp" />
     <ClInclude Include="Game\Level\Option.hpp" />
     <ClInclude Include="Game\Level\Shop.hpp" />
-    <ClInclude Include="Game\Level\Stage1.hpp" />
+    <ClInclude Include="Game\Level\StageDemo.hpp" />
+    <ClInclude Include="Game\Level\Title.hpp" />
     <ClInclude Include="Game\MapEditor.hpp" />
     <ClInclude Include="Game\Object\Barrier.hpp" />
     <ClInclude Include="Game\Object\Bullet.hpp" />
@@ -141,7 +143,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -154,7 +156,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />

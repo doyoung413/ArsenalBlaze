@@ -113,7 +113,7 @@ void SoundManager::LoadSoundFilesFromFolder(const std::string& folderPath)
 			std::transform(extension.begin(), extension.end(), extension.begin(),
 				[](unsigned char c) -> char { return static_cast<char>(std::tolower(c)); });
 
-			if (extension == "wav")
+			if (extension == "wav" || extension == "ogg")
 			{
 #ifdef _DEBUG
 				std::cout << "Load Sound Complete : " << fileName << std::endl;
@@ -221,14 +221,24 @@ bool SoundManager::IsPaused(int channelIndex)
 	return false;
 }
 
-void SoundManager::VolumeUp(int channelIndex)
+void SoundManager::VolumeUp()
 {
-	SetVolume(channelIndex, channels[channelIndex].soundVolume + 0.05f);
+	int index = 0;
+	for (auto& channel : channels)
+	{
+		SetVolume(index, channel.soundVolume + 0.05f);
+		index++;
+	}
 }
 
-void SoundManager::VolumeDown(int channelIndex)
+void SoundManager::VolumeDown()
 {
-	SetVolume(channelIndex, channels[channelIndex].soundVolume - 0.05f);
+	int index = 0;
+	for (auto& channel : channels)
+	{
+		SetVolume(index, channel.soundVolume - 0.05f);
+		index++;
+	}
 }
 
 void SoundManager::SetVolume(int channelIndex, float volume)
@@ -239,6 +249,14 @@ void SoundManager::SetVolume(int channelIndex, float volume)
 		ErrorCheck(result);
 
 		channels[channelIndex].soundVolume = std::clamp(volume, 0.f, 1.f);
+	}
+}
+
+void SoundManager::SetVolume(float volume)
+{
+	for (int i = 0; i < soundMaxIndex; i++)
+	{
+		SetVolume(i, volume);
 	}
 }
 

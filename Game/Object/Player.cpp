@@ -54,6 +54,7 @@ void Player::CollideObject(Object* obj)
 			{
 				Instance::GetObjectManager()->Destroy(obj->GetId());
 			}
+			Instance::GetGameManager()->AddHp(-static_cast<int>((static_cast<EnemyBullet*>(obj)->GetDamage())));
 		}
 		break;
 	case ObjectType::ENEMY:
@@ -63,7 +64,13 @@ void Player::CollideObject(Object* obj)
 			GetComponent<PlayerComponent>()->SetInvincibleState(true);
 			if (static_cast<Enemy*>(obj)->GetMaxHp() <= 5)
 			{
-				static_cast<Enemy*>(obj)->SetHp((-3));
+				static_cast<Enemy*>(obj)->SetHp((-5));
+				Instance::GetGameManager()->AddHp(-5);
+			}
+			else
+			{
+				static_cast<Enemy*>(obj)->SetHp((-1));
+				Instance::GetGameManager()->AddHp(-1);
 			}
 			static_cast<Enemy*>(obj)->SetIsHit(true);
 		}
@@ -82,7 +89,7 @@ void Player::CollideObject(Object* obj)
 				break;
 			case ItemType::L:
 				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
-				GetComponent<PlayerComponent>()->SetMaxSubShotDelay(20.f);
+				GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
 				break;
 			}
 

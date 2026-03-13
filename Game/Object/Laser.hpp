@@ -19,6 +19,7 @@ public:
 
 	void MakeHitParticle(glm::vec2 pos);
 protected:
+	Animation laserReduceAnimation;
 	bool SetTarget();
 
 	glm::vec2 distance = { 0.f,0.f };

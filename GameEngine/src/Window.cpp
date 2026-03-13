@@ -55,7 +55,7 @@ void Window::Update()
 	if ((event.type == SDL_WINDOWEVENT) && (event.window.event == SDL_WINDOWEVENT_RESIZED || event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED))
 	{
 		ResizeEventHandler(window, event.window.data1, event.window.data2);
-		AspectRatio(event.window.data1, event.window.data2, screenRatio);
+		//AspectRatio(event.window.data1, event.window.data2, screenRatio);
 	}
 	SDL_GL_SwapWindow(window);
 }

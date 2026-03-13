@@ -51,9 +51,10 @@ public:
 	bool IsPlaying(int channelIndex);
 	bool IsPaused(int channelIndex);
 
-	void VolumeUp(int channelIndex);
-	void VolumeDown(int channelIndex);
+	void VolumeUp();
+	void VolumeDown();
 	void SetVolume(int channelIndex, float volume);
+	void SetVolume(float volume);
 	float GetChannelVolume(int channelIndex) { return channels.at(channelIndex).soundVolume; }
 
 

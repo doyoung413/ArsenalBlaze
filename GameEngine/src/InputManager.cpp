@@ -6,6 +6,10 @@
 #include "InputManager.hpp"
 #include "Instance.hpp"
 
+#include "Instance.hpp"
+
+int InputManager::mouseWheel = 0;
+
 InputManager::InputManager()
 {
 }
@@ -39,6 +43,7 @@ void InputManager::FindAndAddController()
 
 void InputManager::InputPollEvent(SDL_Event& event)
 {
+	mouseWheel = 0;
 	switch (event.type)
 	{
 	case SDL_KEYDOWN:
@@ -58,6 +63,9 @@ void InputManager::InputPollEvent(SDL_Event& event)
 		break;
 	case SDL_CONTROLLERBUTTONUP:
 		GamepadButtonUp(static_cast<GAMEPADBUTTONS>(event.cbutton.button));
+		break;
+	case SDL_MOUSEWHEEL:
+		mouseWheel = event.wheel.y;
 		break;
 	default:
 		break;
@@ -115,18 +123,23 @@ glm::vec2 InputManager::GetMousePosition()
 	int mouseX, mouseY;
 	SDL_GetMouseState(&mouseX, &mouseY);
 	glm::vec2 pos = { mouseX, mouseY };
-	glm::vec2 cameraPos = { Instance::GetCameraManager()->GetCameraPosition().x, Instance::GetCameraManager()->GetCameraPosition().y };
+	glm::vec3 c_pos = Instance::GetCameraManager()->GetCameraPosition();
+	glm::vec3 c_center = Instance::GetCameraManager()->GetCenter();
 	glm::vec2 windowViewSize = Instance::GetCameraManager()->GetViewSize();
-	glm::vec2 viewPort = Instance::GetWindow()->GetViewPort();
-	glm::vec2 viewPortSize = Instance::GetWindow()->GetViewPortSize();
 	int w = 0;
 	int h = 0;
 	SDL_GetWindowSize(Instance::GetWindow()->GetWindow(), &w, &h);
 	float zoom = Instance::GetCameraManager()->GetZoom();
-	
-	pos = { (windowViewSize.x / 2.f * ((pos.x - viewPort.x) / (static_cast<float>(viewPortSize.x) / 2.f) - 1) + cameraPos.x) / zoom,
-		-((windowViewSize.y / 2.f * ((pos.y - viewPort.y) / (static_cast<float>(viewPortSize.y) / 2.f) - 1) + cameraPos.y) / zoom) };
+
+	float worldX = c_center.x + (c_pos.x + windowViewSize.x / 2.f * (pos.x / (static_cast<float>(w) / 2.f) - 1.f)) / zoom;
+	float worldY = c_center.y - (c_pos.y + windowViewSize.y / 2.f * (pos.y / (static_cast<float>(h) / 2.f) - 1.f)) / zoom;
+	pos = { worldX, worldY };
 	return ceil(pos);
+}
+
+int InputManager::GetMouseWheel()
+{
+	return mouseWheel;
 }
 
 bool InputManager::IsGamepadButtonPressed(GAMEPADBUTTONS button)

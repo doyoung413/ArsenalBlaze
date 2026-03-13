@@ -21,7 +21,7 @@ protected:
 	bool IsTargetNULL();
 	bool IsSerach(Object* target_);
 
-	float damage = 0;
+	float damage = 3;
 
 	float searchRadius = 200.f; 
 	glm::vec2 prevSpeed{ 0.f,0.f };

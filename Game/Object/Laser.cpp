@@ -13,6 +13,7 @@ Laser::Laser(float positionX, float positionY, float speedX, float speedY, float
 
 	GetComponent<Physics>()->SetCollisionBoxSize(13.f, 400.f);
 	GetComponent<Physics>()->SetCollisionBoxPosition(0.f, 400.f);
+	laserReduceAnimation = Instance::GetSpriteManager()->GetSprite("laserReduce")->animation;
 
 	if (Instance::GetObjectManager()->FindObjectWithName("Player") != nullptr)
 	{
@@ -30,9 +31,13 @@ void Laser::Update(float dt)
 {
 	Object::Update(dt);
 
-	if (delay > 40.f || Instance::GetObjectManager()->FindObjectWithName("Player") == nullptr)
+	if (delay > 40.f || (Instance::GetObjectManager()->FindObjectWithName("Player") == nullptr && Instance::GetLevelManager()->GetCurrentLevel() != LevelType::SHOP))
 	{
+		Instance::GetSpriteManager()->DrawSpriteWithAnimation("laserReduce", laserReduceAnimation, dt, { position.x, position.y + lastLength, 0.f }, 0.f, { 13.f, lastLength, 0.f }, { 1.f, 1.f,1.f,0.5f }, 0.47f);
+		if (laserReduceAnimation.isAnimationEnd() == true)
+		{
 			Instance::GetObjectManager()->Destroy(id);
+		}
 	}
 	else
 	{
@@ -40,13 +45,13 @@ void Laser::Update(float dt)
 		if (SetTarget())
 		{
 			float distanceTtoP = targetY - position.y;
-			Instance::GetSpriteManager()->DrawRectangle({ position.x, position.y + distanceTtoP / 2.f, 0.f }, 0.f, { 13.f, distanceTtoP / 2.f , 0.f }, { 1.f, 1.f,1.f,0.5f }, depth);
+			Instance::GetSpriteManager()->DrawSprite("laser", { position.x, position.y + distanceTtoP / 2.f, 0.f }, 0.f, { 13.f, distanceTtoP / 2.f , 0.f }, { 1.f, 1.f,1.f,0.5f }, depth);
 			lastLength = distanceTtoP / 2.f;
-			Instance::GetSpriteManager()->DrawRectangle({ position.x ,targetY, 0.f }, 0.f, { 24.f, 16.f, 0.f }, { 1.f, 1.f,1.f,1.f }, depth + 0.01f);
+			Instance::GetSpriteManager()->DrawSprite("laserHit", { position.x ,targetY, 0.f }, 0.f, { 24.f, 16.f, 0.f }, { 1.f, 1.f,1.f,1.f }, depth + 0.01f);
 		}
 		else
 		{
-			Instance::GetSpriteManager()->DrawRectangle({ position.x, position.y + 400.f, 0.f }, 0.f, { 13.f,400.f, 0.f }, { 1.f, 1.f,1.f,0.5f }, depth);
+			Instance::GetSpriteManager()->DrawSprite("laser", { position.x, position.y + 400.f, 0.f }, 0.f, { 13.f,400.f, 0.f }, { 1.f, 1.f,1.f,0.5f }, depth);
 			lastLength = 400.f;
 		}
 	}

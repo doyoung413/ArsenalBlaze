@@ -18,7 +18,7 @@ void Option::MainOptionMenu()
 		{
 			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
 		}
-		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(Instance::GetSoundManager()->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
 		{
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
@@ -38,7 +38,7 @@ void Option::MainOptionMenu()
 		{
 			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 		}
-		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(Instance::GetSoundManager()->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
 		{
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
@@ -58,7 +58,7 @@ void Option::MainOptionMenu()
 		{
 			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
 		}
-		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(Instance::GetSoundManager()->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 		{
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
@@ -78,7 +78,7 @@ void Option::MainOptionMenu()
 		{
 			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
 		}
-		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(Instance::GetSoundManager()->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
 		{
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
@@ -98,7 +98,7 @@ void Option::MainOptionMenu()
 		{
 			text.DrawTextWithColor("\n\n\n\nFULL SCREEN : OFF", -144.f, 208.f, 0.f, 1.0f, 1.f);
 		}
-		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(soundManager->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
+		text.DrawTextWithColor("\n\n\n\n\n\nVOLUME : " + std::to_string(static_cast<int>(std::round(Instance::GetSoundManager()->GetChannelVolume(1) * 100))), -144.f, 208.f, 0.f, 1.0f, 1.f);
 		{
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\nSOUND TEST ", -144.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\nSOUND : " + std::to_string(soundIndex), -144.f, 208.f, 0.f, 1.0f, 1.f);
@@ -117,100 +117,93 @@ void Option::KeyChanging(int index_, float dt)
 		switch (index)
 		{
 		case 0:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 1:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 2:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 3:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 4:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 5:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 6:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, 1.f);
 			break;
 		case 7:
-			text.DrawTextWithColor("\n\n\nUP:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\nDOWN:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
-			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f);
+			text.DrawTextWithColor("\n\n\nUP:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\nDOWN:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\nLEFT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nRIGHT:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\nKEY1:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\nKEY2:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -72.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\n\n\n\nSTART:" + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -72.f, 208.f, 0.f, 1.0f);
 			text.DrawTextWithColor(("\n\n\n\n\n\n\n\n\n\n\nRETURN TO MENU"), -72.f, 208.f, 0.f, 1.0f, { 1.f, 0.f, 0.f, 1.f });
 			break;
 		}
 
 		text.DrawTextWithColor("\n\n\n\n\n\n\n\n\n\n\n\n\n\nPRESS R TO RESET KEY SET", -176.f, 208.f, 0.f, 1.0f, 1.f);
-		if (inputManager->IsKeyPressOnce(KEYBOARDKEYS::R))
+		if (Instance::GetInputManager()->IsKeyPressOnce(KEYBOARDKEYS::R))
 		{
-			gameManager->GetKeySetting().UP = KEYBOARDKEYS::UP;
-			gameManager->GetKeySetting().DOWN = KEYBOARDKEYS::DOWN;
-			gameManager->GetKeySetting().LEFT = KEYBOARDKEYS::LEFT;
-			gameManager->GetKeySetting().RIGHT = KEYBOARDKEYS::RIGHT;
-			gameManager->GetKeySetting().KEY1 = KEYBOARDKEYS::Z;
-			gameManager->GetKeySetting().KEY2 = KEYBOARDKEYS::X;
-			gameManager->GetKeySetting().KEY3 = KEYBOARDKEYS::C;
-			gameManager->GetKeySetting().START = KEYBOARDKEYS::ENTER;
+			Instance::GetGameManager()->ResetKeySetting();
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY2) || inputManager->IsGamepadButtonPressOnce(gameManager->GetKeySetting().PAD_KEY2))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY2) || Instance::GetInputManager()->IsGamepadButtonPressOnce(Instance::GetGameManager()->GetKeySetting().PAD_KEY2))
 		{
 			index = 0;
 			isKeySetting = false;
@@ -223,84 +216,84 @@ void Option::KeyChanging(int index_, float dt)
 		switch (index_)
 		{
 		case 0:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().UP)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().UP)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().UP = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().UP = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 1:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().DOWN)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().DOWN)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().DOWN = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().DOWN = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 2:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().LEFT)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().LEFT)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().LEFT = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().LEFT = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 3:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().RIGHT)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().RIGHT)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().RIGHT = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().RIGHT = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 4:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY1)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().KEY1 = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().KEY1 = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 5:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().KEY2)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().KEY2)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().KEY2 = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().KEY2 = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
 			}
 			break;
 		case 6:
-			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + inputManager->KeyBoardToString((gameManager->GetKeySetting().START)), -144.f, 208.f, 0.f, 1.0f, 1.f);
+			text.DrawTextWithColor("\n\n\n\n\n\nPRESS KEY TO CHANGE: " + Instance::GetInputManager()->KeyBoardToString((Instance::GetGameManager()->GetKeySetting().START)), -144.f, 208.f, 0.f, 1.0f, 1.f);
 			if (changeDelay > 1.f)
 			{
-				if (inputManager->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
+				if (Instance::GetInputManager()->GetPressKey() != KEYBOARDKEYS::UNKNOWN)
 				{
-					gameManager->GetKeySetting().START = inputManager->GetPressKey();
+					Instance::GetGameManager()->GetKeySetting().START = Instance::GetInputManager()->GetPressKey();
 					isSelected = false;
 					changeDelay = 0.f;
 				}
@@ -318,21 +311,21 @@ void Option::Input()
 {
 	if (isKeySetting == false)
 	{
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().UP))
 		{
 			if (index > 0)
 			{
 				index--;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().DOWN))
 		{
 			if (index < 4)
 			{
 				index++;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY1))
 		{
 			switch (index)
 			{
@@ -343,41 +336,43 @@ void Option::Input()
 			case 1:
 				Instance::GetWindow()->ToggleFullScreen();
 				break;
-			case 2:
+			case 3:
+				Instance::GetSoundManager()->Play(soundIndex, 1);
 				break;
-			case 6:
-				isSelected = true;
+			case 4:
+				FileManager::SaveSetting("Setting.ini");
+				Instance::GetLevelManager()->ChangeLevel(LevelType::TITLE);
 				break;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().LEFT))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().LEFT))
 		{
 			switch (index)
 			{
 			case 2:
-				soundManager->VolumeDown(1);
+				Instance::GetSoundManager()->VolumeDown();
 				break;
 			case 3:
-				if (soundIndex > 0 && soundManager->GetAmontOfSounds() != 0)
+				if (soundIndex > 0)
 				{
-					--soundIndex;
+					soundIndex--;
 				}
 				else
 				{
-					soundIndex = soundManager->GetAmontOfSounds() - 1;
+					soundIndex = Instance::GetSoundManager()->GetAmontOfSounds() - 1;
 				}
 				break;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().RIGHT))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().RIGHT))
 		{
 			switch (index)
 			{
 			case 2:
-				soundManager->VolumeUp(1);
+				Instance::GetSoundManager()->VolumeUp();
 				break;
 			case 3:
-				if (soundIndex < soundManager->GetAmontOfSounds() - 1 && soundManager->GetAmontOfSounds() != 0)
+				if (soundIndex < Instance::GetSoundManager()->GetAmontOfSounds() - 1)
 				{
 					soundIndex++;
 				}
@@ -393,14 +388,14 @@ void Option::Input()
 	{
 		if (isSelected == false)
 		{
-			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
+			if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().UP))
 			{
 				if (index > 0)
 				{
 					index--;
 				}
 			}
-			if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
+			if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().DOWN))
 			{
 				if (index < 7)
 				{
@@ -408,7 +403,7 @@ void Option::Input()
 				}
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY1))
 		{
 			if (isSelected == false)
 			{
@@ -420,13 +415,8 @@ void Option::Input()
 
 void Option::Init()
 {
-	gameManager = Instance::GetGameManager();
-	spriteManager = Instance::GetSpriteManager();
-	inputManager = Instance::GetInputManager();
-	soundManager = Instance::GetSoundManager();
-
 	text.LoadFromFile("Assets/font.fnt");
-	text.SetShader(spriteManager->GetShader());
+	text.SetShader(Instance::GetSpriteManager()->GetShader());
 	index = 0;
 }
 
@@ -449,9 +439,6 @@ void Option::Update(float dt)
 				isSelected = false;
 				isKeySetting = true;
 				break;
-			case 6:
-				FileManager::SaveSetting("../Setting.ini");
-				break;
 			}
 		}
 		Input();
@@ -466,8 +453,4 @@ void Option::Restart()
 
 void Option::End()
 {
-	gameManager = nullptr;
-	spriteManager = nullptr;
-	inputManager = nullptr;
-	soundManager = nullptr;
 }

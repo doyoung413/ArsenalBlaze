@@ -5,17 +5,14 @@
 
 void Shop::Init()
 {
-	spriteManager = Instance::GetSpriteManager();
-	gameManager = Instance::GetGameManager();
-	objectManager = Instance::GetObjectManager();
-	soundManager = Instance::GetSoundManager();
-	inputManager = Instance::GetInputManager();
-
 	text.LoadFromFile("Assets/font.fnt");
-	text.SetShader(spriteManager->GetShader());
+	text.SetShader(Instance::GetSpriteManager()->GetShader());
 
-	player = new Player(128.f, 0.f, 0.f, 0.f, 46.f, 45.f, DrawType::RECTANGLE, "PlayerTemp", ObjectType::PLAYER);
-	gameManager->SetIsPlayerCanControl(false);
+	player = new Player(128.f, 0.f, 0.f, 0.f, 46.f, 45.f, DrawType::SPRITE, "Player", ObjectType::PLAYER);
+	player->SetSpriteName("Player");
+	player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
+	Instance::GetGameManager()->SetIsPlayerCanControl(false);
+	selectionIndex = 0;
 }
 
 void Shop::Update(float dt)
@@ -33,7 +30,7 @@ void Shop::Update(float dt)
 		EquipmentShop();
 		break;
 	}
-	text.DrawTextWithColor("MONEY " + std::to_string(gameManager->GetMoney()), 128.f, -224.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+	text.DrawTextWithColor("MONEY " + std::to_string(Instance::GetGameManager()->GetMoney()), 128.f, -224.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
 	Input();
 	if (isWarningOn == true)
@@ -54,16 +51,9 @@ void Shop::Restart()
 
 void Shop::End()
 {
-	gameManager->SetIsPlayerCanControl(true);
+	Instance::GetGameManager()->SetIsPlayerCanControl(true);
 	delete player;
 	player = nullptr;
-
-	spriteManager = nullptr;
-	gameManager = nullptr;
-	objectManager = nullptr;
-	soundManager = nullptr;
-	inputManager = nullptr;
-
 }
 
 void Shop::Input()
@@ -71,27 +61,27 @@ void Shop::Input()
 	switch (shopState)
 	{
 	case ShopState::MAIN:
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().UP))
 		{
 			if (selectionIndex > 0)
 			{
 				--selectionIndex;
 			}
 		}
-		else if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
+		else if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().DOWN))
 		{
-			if (selectionIndex < 3)
+			if (selectionIndex < 2)
 			{
 				++selectionIndex;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY1))
 		{
 			switch (selectionIndex)
 			{
 			case 0:
-				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
-				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(20.f);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
+				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
 				selectionIndex = 0;
 				shopState = ShopState::WEAPON;
 				break;
@@ -100,7 +90,7 @@ void Shop::Input()
 				shopState = ShopState::EQUIPEMENT;
 				break;
 			case 2:
-				selectionIndex = 0;
+				Instance::GetLevelManager()->ChangeLevel(LevelType::STAGEDEMO);
 				break;
 			case 3:
 				selectionIndex = 0;
@@ -109,7 +99,7 @@ void Shop::Input()
 		}
 		break;
 	case ShopState::WEAPON:
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().UP))
 		{
 			if (selectionIndex > 0)
 			{
@@ -117,20 +107,20 @@ void Shop::Input()
 			}
 			if (selectionIndex == 0)
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
 				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
 			}
 			else if (selectionIndex == 1)
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::HOMING);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::HOMING);
 				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(80.f);
 			}
 			else
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
 			}
 		}
-		else if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
+		else if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().DOWN))
 		{
 			if (selectionIndex < 4)
 			{
@@ -138,56 +128,68 @@ void Shop::Input()
 			}
 			if (selectionIndex == 0)
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::LASER);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::LASER);
 				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(100.f);
 			}
 			else if (selectionIndex == 1)
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::HOMING);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::HOMING);
 				player->GetComponent<PlayerComponent>()->SetMaxSubShotDelay(80.f);
 			}
 			else
 			{
-				gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
+				Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY1))
 		{
 			WeaponUpgrade();
 		}
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY3))
+		{
+			Instance::GetObjectManager()->DestroyAllObjects();
+			Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
+			selectionIndex = 0;
+			shopState = ShopState::MAIN;
+		}
 		break;
 	case ShopState::EQUIPEMENT:
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().LEFT))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().LEFT))
 		{
 			if (selectionIndex > 0)
 			{
 				--selectionIndex;
 			}
 		}
-		else if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().RIGHT))
+		else if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().RIGHT))
 		{
 			if (selectionIndex < 7)
 			{
 				++selectionIndex;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().UP))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().UP))
 		{
 			if (selectionIndex >= 4 && selectionIndex < 8)
 			{
 				selectionIndex = selectionIndex - 4;
 			}
 		}
-		else if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().DOWN))
+		else if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().DOWN))
 		{
 			if (selectionIndex >= 0 && selectionIndex < 4)
 			{
 				selectionIndex = selectionIndex + 4;
 			}
 		}
-		if (inputManager->IsKeyPressOnce(gameManager->GetKeySetting().KEY1))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY1))
 		{
 			EquipmentUpgrade();
+		}
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY3))
+		{
+			selectionIndex = 0;
+			shopState = ShopState::MAIN;
 		}
 		break;
 	}
@@ -198,28 +200,19 @@ void Shop::ShopMain()
 	switch (selectionIndex)
 	{
 	case 0:
-		spriteManager->DrawRectangle({ -192.f, 128.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, 32.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, -64.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -256.f, -216.f, 0.f }, 0.f, { 48.f, 24.f, 0.f });
+		text.DrawTextWithColor("WEAPON", -192.f, 128.f, 0.f, 2.0f, { 1.f, 0.f, 0.f, 1.f });
+		text.DrawTextWithColor("EQUIP", -288.f, 32.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("SORTIE", -288.f, -64.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 1:
-		spriteManager->DrawRectangle({ -224.f, 128.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -192.f, 32.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, -64.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -256.f, -216.f, 0.f }, 0.f, { 48.f, 24.f, 0.f });
+		text.DrawTextWithColor("WEAPON", -288.f, 128.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("EQUIP", -192.f, 32.f, 0.f, 2.0f, { 1.f, 0.f, 0.f, 1.f });
+		text.DrawTextWithColor("SORTIE", -288.f, -64.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 2:
-		spriteManager->DrawRectangle({ -224.f, 128.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, 32.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -192.f, -64.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -256.f, -216.f, 0.f }, 0.f, { 48.f, 24.f, 0.f });
-		break;
-	case 3:
-		spriteManager->DrawRectangle({ -224.f, 128.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, 32.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -224.f, -64.f, 0.f }, 0.f, { 96.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -256.f, -216.f, 0.f }, 0.f, { 48.f, 24.f, 0.f });
+		text.DrawTextWithColor("WEAPON", -288.f, 128.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("EQUIP", -288.f, 32.f, 0.f, 2.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("SORTIE", -192.f, -64.f, 0.f, 2.0f, { 1.f, 0.f, 0.f, 1.f });
 		break;
 	}
 }
@@ -229,47 +222,49 @@ void Shop::WeaponShop()
 	switch (selectionIndex)
 	{
 	case 0:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionLaser", { -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionHoming", { -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionExit", { -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 
-		text.DrawTextWithColor("UP:", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("LASER", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 1:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionLaser", { -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionHoming", { -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionExit", { -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 
-		text.DrawTextWithColor("UP:", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("HOMING", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 2:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionLaser", { -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionHoming", { -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionExit", { -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 
-		text.DrawTextWithColor("UP:", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE \nIN THIS VERSION", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 3:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionLaser", { -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionHoming", { -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionExit", { -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
 
-		text.DrawTextWithColor("UP:", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE \nIN THIS VERSION", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 4:
-		spriteManager->DrawRectangle({ -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
-		spriteManager->DrawRectangle({ -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,0.f,0.f,1.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionLaser", { -176.f, 176.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionHoming", { -176.f, 96.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, 16.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionNone", { -176.f, -66.f, 0.f }, 0.f, { 32.f, 32.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("WeaponSelectionExit", { -176.f, -146.f, 0.f }, 0.f, { 32.f, 32.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+
+		text.DrawTextWithColor("EXIT", -100.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	}
 	player->GetComponent<PlayerComponent>()->Attack();
@@ -281,100 +276,108 @@ void Shop::EquipmentShop()
 	switch (selectionIndex)
 	{
 	case 0:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("INCREASE MAX HP", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 1:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("EQUIP BARRIER WHICH BLOCK \nENEMY'S BULLET", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 2:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE IN THIS VERSION", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 3:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE IN THIS VERSION", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 4:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE IN THIS VERSION", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 5:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE IN THIS VERSION", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 6:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("NOT AVAILABLE IN THIS VERSION", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	case 7:
-		spriteManager->DrawRectangle({ -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
-		spriteManager->DrawRectangle({ 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,0.f,0.f,1.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionHP", { -144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionBarrier", { -48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 126.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { -48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 48.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f });
+		Instance::GetSpriteManager()->DrawSprite("EquipSelectionNone", { 144.f, 30.f, 0.f }, 0.f, { 48.f, 48.f, 0.f }, { 1.f,1.f,1.f,0.5f });
+		text.DrawTextWithColor("EXIT", 108.f, 30.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 
-		text.DrawTextWithColor("UP:", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
+		text.DrawTextWithColor("EXIT", -176.f, -66.f, 0.f, 1.0f, { 1.f, 1.f, 1.f, 1.f });
 		break;
 	}
 }
@@ -384,82 +387,82 @@ void Shop::WeaponUpgrade()
 	switch (selectionIndex)
 	{
 	case 0:
-		if (gameManager->GetWeaponPower().laser < 1)
+		if (Instance::GetGameManager()->GetWeaponLevel().laser < 1)
 		{
 			if (Buy(100))
 			{
-				gameManager->SetWeaponPower(PlayerWeapon::LASER, 1);
+				Instance::GetGameManager()->SetWeaponLevel(PlayerWeapon::LASER, 1);
 			}
 		}
 		break;
 	case 1:
-		if (gameManager->GetWeaponPower().homing < 1)
+		if (Instance::GetGameManager()->GetWeaponLevel().homing < 1)
 		{
 			if (Buy(100))
 			{
-				gameManager->SetWeaponPower(PlayerWeapon::HOMING, 1);
+				Instance::GetGameManager()->SetWeaponLevel(PlayerWeapon::HOMING, 1);
 			}
 		}
-			break;
+		break;
 	case 2:
 		break;
 	case 3:
 		break;
 	case 4:
-		objectManager->DestroyAllObjects();
-		gameManager->SetPlayerWeapon(PlayerWeapon::NORMAL);
+		Instance::GetObjectManager()->DestroyAllObjects();
+		Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
 		selectionIndex = 0;
 		shopState = ShopState::MAIN;
 		break;
-		}
 	}
+}
 
-	void Shop::EquipmentUpgrade()
+void Shop::EquipmentUpgrade()
+{
+	switch (selectionIndex)
 	{
-		switch (selectionIndex)
+	case 0:
+		if (Buy(200))
 		{
-		case 0:
-			if (Buy(200))
-			{
-				gameManager->SetMaxHp(gameManager->GetMaxHp() + 10);
-				gameManager->AddHp(10);
-			}
-			break;
-		case 1:
-			if (Buy(500))
-			{
-				if (gameManager->GetIsBarrier() != true)
-				{
-					gameManager->SetIsBarrier(true);
-				}
-				else
-				{
-
-				}
-			}
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			selectionIndex = 0;
-			shopState = ShopState::MAIN;
-			break;
+			Instance::GetGameManager()->SetMaxHp(Instance::GetGameManager()->GetMaxHp() + 10);
+			Instance::GetGameManager()->AddHp(10);
 		}
-	}
-
-	bool Shop::Buy(int cost)
-	{
-		if (gameManager->GetMoney() >= cost)
+		break;
+	case 1:
+		if (Buy(500))
 		{
-			gameManager->SetMoney(gameManager->GetMoney() - cost);
+			if (Instance::GetGameManager()->GetIsBarrier() != true)
+			{
+				Instance::GetGameManager()->SetIsBarrier(true);
+			}
+			else
+			{
+
+			}
+		}
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	case 6:
+		break;
+	case 7:
+		selectionIndex = 0;
+		shopState = ShopState::MAIN;
+		break;
+	}
+}
+
+bool Shop::Buy(int cost)
+{
+	if (Instance::GetGameManager()->GetMoney() >= cost)
+	{
+		Instance::GetGameManager()->SetMoney(Instance::GetGameManager()->GetMoney() - cost);
 			return true;
 		}
 		else

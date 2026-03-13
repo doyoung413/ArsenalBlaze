@@ -29,8 +29,16 @@ void Homing::Update(float dt)
 
 	if (isLockReady == true)
 	{
+		delay += dt;
+		if (delay > 1.2f)
+		{
+			delay = 0.f;
+			Instance::GetParticleManager()->AddSingleParticle(position, { 8.f, 8.f }, { 0.f, 0.f }, 0.f, 20.f, { 1.f, 1.f, 1.f, 1.f }, ANIMESPRI, "HMissileE", 0.47f);
+		}
+
 		if ((isOutOfCamera() && isInCamera == true) || isOutOfWindowHigh() == true)
 		{
+			//GetComponent<Material>()->End();
 			Instance::GetObjectManager()->Destroy(id);
 		}
 		if (isInOfCamera())
@@ -53,8 +61,23 @@ void Homing::Update(float dt)
 			}
 		}
 		else if (isLockOn == true && IsTargetNULL() == false)
-		{
-			std::cout << speed.x << std::endl;
+		{/*
+			float targetX = target->GetPosition().x;
+			float targetY = target->GetPosition().y;
+
+			float dx = targetX - position.x;
+			float dy = targetY - position.y;
+
+			angle = atan2(dy, dx);
+
+			prevSpeed = { cos(angle) * speed.x, sin(angle) * speed.y };
+
+			position.x += prevSpeed.x * dt;
+			position.y += prevSpeed.y * dt;
+
+			angle *= -60.f;*/
+
+
 			float targetX = target->GetPosition().x;
 			float targetY = target->GetPosition().y;
 
@@ -70,28 +93,31 @@ void Homing::Update(float dt)
 				tempAngle += 360;
 			}
 
-			if (tempAngle != angle)
+			if (GetRotate() != static_cast<float>(tempAngle))
 			{
-				if (tempAngle < angle)
+				if (tempAngle != angle)
 				{
-					if (tempAngle == 0)
+					if (tempAngle < angle)
 					{
-						SetRotate(0.f);
+						if (tempAngle == 0)
+						{
+							SetRotate(0.f);
+						}
+						else
+						{
+							SetRotate(std::clamp(GetRotate() - 15.f, 0.f, 360.f));
+						}
 					}
-					else
+					else if (tempAngle > angle)
 					{
-						SetRotate(std::clamp(GetRotate() - 15.f, 0.f, 360.f));
-					}
-				}
-				else if (tempAngle > angle)
-				{
-					if (tempAngle == 345)
-					{
-						SetRotate(345.f);
-					}
-					else
-					{
-						SetRotate(std::clamp(GetRotate() + 15.f, 0.f, 360.f));
+						if (tempAngle == 345)
+						{
+							SetRotate(345.f);
+						}
+						else
+						{
+							SetRotate(std::clamp(GetRotate() + 15.f, 0.f, 360.f));
+						}
 					}
 				}
 			}

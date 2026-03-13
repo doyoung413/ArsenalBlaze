@@ -27,6 +27,8 @@ public:
 	bool IsMouseButtonPressed(MOUSEBUTTON button);
 	bool IsMouseButtonPressOnce(MOUSEBUTTON button);
 	glm::vec2 GetMousePosition();
+	static int mouseWheel;
+	int GetMouseWheel();
 
 	bool IsGamepadButtonPressed(GAMEPADBUTTONS button);
 	bool IsGamepadButtonPressOnce(GAMEPADBUTTONS button);
