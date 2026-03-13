@@ -56,4 +56,3 @@
 - **백그라운드 생성 (Background Creator)**: 마우스 가운데 버튼 또는 `Space` 키
 - **모드 전환 창 (UI)**: 화면에 표시되는 ImGui 윈도우를 통해 `ObjectModifier`, `ObjectCreator`, `BackgroundCreator` 모드를 선택 혹은 세부 속성 조절을 할 수 있습니다.
 
-> *P.S. 방어막(베리어) 시스템은 현재 개발 중단/진행 중으로 게임 내 미적용 상태일 수 있습니다. 완성 후 업데이트될 예정입니다.*
