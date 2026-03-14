@@ -22,7 +22,7 @@
 * **Framework/API**: Custom 2D Engine
 * **Libraries**: 
   * SDL2 (윈도우 창 생성, 2D 그래픽 렌더링, 사용자 입력 이벤트 처리)
-  * FMOD (효과음, BGM 등 강력한 오디오 시스템 지원)
+  * FMOD (효과음, BGM 등 오디오 시스템 지원)
   * glm (벡터, 행렬 등 수학/물리 계산 지원 추정)
 * **Tools**: Visual Studio
 
