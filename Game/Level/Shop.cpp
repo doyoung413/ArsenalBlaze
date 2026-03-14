@@ -145,7 +145,7 @@ void Shop::Input()
 		{
 			WeaponUpgrade();
 		}
-		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY3))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY2))
 		{
 			Instance::GetObjectManager()->DestroyAllObjects();
 			Instance::GetGameManager()->SetPlayerWeapon(PlayerWeapon::NORMAL);
@@ -186,7 +186,7 @@ void Shop::Input()
 		{
 			EquipmentUpgrade();
 		}
-		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY3))
+		if (Instance::GetInputManager()->IsKeyPressOnce(Instance::GetGameManager()->GetKeySetting().KEY2))
 		{
 			selectionIndex = 0;
 			shopState = ShopState::MAIN;
