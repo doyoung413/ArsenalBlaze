@@ -48,9 +48,11 @@ void Homing::Update(float dt)
 
 		if (isLockOn == true && IsTargetNULL() == true)
 		{
-			if (angle != 270.f)
+			if (prevSpeed.x != 0.f || prevSpeed.y != 0.f)
 			{
-				SetRotate(angle);
+				// Recalculate angle from prevSpeed so sprite faces movement direction
+				float moveAngle = atan2(prevSpeed.y, prevSpeed.x);
+				SetRotate(static_cast<float>(static_cast<int>(moveAngle * -60.f) - (static_cast<int>(moveAngle * -60.f) % 15)));
 				position.x += prevSpeed.x * dt;
 				position.y += prevSpeed.y * dt;
 			}

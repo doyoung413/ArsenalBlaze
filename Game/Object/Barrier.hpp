@@ -12,6 +12,7 @@ public:
 	void Init() override {};
 	void Init(Object* player_, float angleIncrease_);
 	void Update(float dt) override;
+	void CollideObject(Object* obj) override;
 
 protected:
 	void SetPlayer(Object* player_) { player = player_; }

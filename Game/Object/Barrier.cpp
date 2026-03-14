@@ -1,5 +1,7 @@
 #include "Barrier.hpp"
 #include "Instance.hpp"
+#include "Component/Physics.hpp"
+#include "Object/EnemyBullet.hpp"
 
 Barrier::Barrier(float positionX, float positionY, float speedX, float speedY, float width, float height, DrawType drawType, std::string name, ObjectType objectType)
 : Object(positionX, positionY, speedX, speedY, width, height, drawType, name, objectType)
@@ -8,6 +10,8 @@ Barrier::Barrier(float positionX, float positionY, float speedX, float speedY, f
 	distanceMax.x = positionX;
 	distanceMax.y = positionY;
 	depth = 0.f;
+	AddComponent<Physics>();
+	GetComponent<Physics>()->Init({ width, height });
 }
 
 void Barrier::Init(Object* player_, float angleIncrease_)
@@ -67,5 +71,16 @@ void Barrier::Update(float dt)
 
 		}
 
+	}
+}
+
+void Barrier::CollideObject(Object* obj)
+{
+	if (obj->GetObjectType() == ObjectType::ENEMYBULLET)
+	{
+		if (GetComponent<Physics>()->CheckCollision(*obj) == true)
+		{
+			Instance::GetObjectManager()->Destroy(obj->GetId());
+		}
 	}
 }

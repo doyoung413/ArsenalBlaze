@@ -159,7 +159,7 @@ void MapEditor::Update()
 	{
 		Instance::GetCameraManager()->MoveRight(2.f);
 	}
-	if (Instance::GetInputManager()->GetMouseWheel() != 0)
+	if (Instance::GetInputManager()->GetMouseWheel() != 0 && !ImGui::GetIO().WantCaptureMouse)
 	{
 		float currentZoom = Instance::GetCameraManager()->GetZoom();
 		currentZoom += Instance::GetInputManager()->GetMouseWheel() * 0.1f;
